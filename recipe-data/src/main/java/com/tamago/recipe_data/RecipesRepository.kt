@@ -6,6 +6,8 @@ import com.tamago.recipe_data.model.Recipe
 import com.tamago.spoonacularapi.SpoonacularApi
 import com.tamago.spoonacularapi.models.RecipeDto
 import com.tamago.spoonacularapi.models.ResponseDto
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.combine
@@ -19,7 +21,8 @@ import kotlinx.coroutines.flow.onEach
 /**
  * Created by Igor Khoroshun on 31.05.2024.
  */
-class RecipesRepository(
+
+class RecipesRepository @Inject constructor(
     private val dataBase: RecipesDataBase,
     private val api: SpoonacularApi,
 //    private val mergeStrategy: MergeStrategy<RequestResult<List<Recipe>>>,
@@ -28,18 +31,8 @@ class RecipesRepository(
         mergeStrategy: MergeStrategy<RequestResult<List<Recipe>>> = DefaultRequestResponseMergeStrategy(),
     ): Flow<RequestResult<List<Recipe>>> {
         val cachedRecipes = getAllFromDatabase()
-            .map { result ->
-                result.map { recipesDbos ->
-                    recipesDbos.map { it.toRecipe() }
-                }
-            }
 
         val remoteRecipes = getAllFromServer()
-            .map { result ->
-                result.map { response ->
-                    response.results.map { it.toRecipe() }
-                }
-            }
 
         return cachedRecipes.combine(remoteRecipes, mergeStrategy::merge)
             .flatMapLatest { result ->
@@ -53,26 +46,34 @@ class RecipesRepository(
             }
     }
 
-    fun getAllFromDatabase(): Flow<RequestResult<List<RecipeDbo>>> {
+    fun getAllFromDatabase(): Flow<RequestResult<List<Recipe>>> {
         val dbRequest = dataBase.recipeDao::getAll.asFlow()
             .map { RequestResult.Success(it) }
 
         val start = flowOf<RequestResult<List<RecipeDbo>>>(RequestResult.InProgress())
-        return merge(start, dbRequest)
+        return merge(start, dbRequest).map { result ->
+            result.map { recipesDbos ->
+                recipesDbos.map { it.toRecipe() }
+            }
+        }
     }
 
-    fun getAllFromServer(): Flow<RequestResult<ResponseDto<RecipeDto>>> {
+    fun getAllFromServer(): Flow<RequestResult<List<Recipe>>> {
         val apiRequest = flow { emit(api.searchRecipe()) }
             .onEach { result ->
                 if (result.isSuccess) {
-                    saveNetResponseToCache(checkNotNull(result.getOrThrow().results))
+                    saveNetResponseToCache(result.getOrThrow().results)
                 }
             }
             .map { it.toRequestResult() }
 
         val start = flowOf<RequestResult<ResponseDto<RecipeDto>>>(RequestResult.InProgress())
 
-        return merge(apiRequest, start)
+        return merge(apiRequest, start).map { result ->
+            result.map { response ->
+                response.results.map { it.toRecipe() }
+            }
+        }
     }
 
     private fun saveNetResponseToCache(data: Set<RecipeDto>) {
@@ -85,4 +86,8 @@ class RecipesRepository(
         api.searchRecipe(query)
         TODO()
     }
+
+//    fun fetchLatest(): Flow<RequestResult<List<Recipe>>> {
+//        return getAllFromServer()
+//    }
 }

@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -49,6 +51,11 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.kotlinx.coroutine.android)
+    implementation(libs.dagger.hilt.android)
+    kapt(libs.dagger.hilt.compiler)
+    implementation(libs.jakarta.inject.api)
+
+
     implementation(project(":recipe-data"))
 
     testImplementation(libs.junit)

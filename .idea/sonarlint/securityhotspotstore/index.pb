@@ -59,3 +59,11 @@ q
 Arecipe-data/src/main/java/com/tamago/recipe_data/RequestResult.kt,0/5/05a93334b3b527cb0e2a9f4a7a24e78a4fe9b0bc
 q
 Arecipe-data/src/main/java/com/tamago/recipe_data/MergeStrategy.kt,2/e/2ee166734ea51a3d3296e766c1b94eea2ba38df4
+o
+?app/src/main/java/com/tamago/nutriencehelper/NewsApplication.kt,3/1/311d643c84f3f8dc5ce7c38abfdd50fff8e225a7
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+r
+Bapp/src/main/java/com/tamago/nutriencehelper/RecipesApplication.kt,f/a/fa5a2dd2dc45bede66c5ac3a99364a5e146a16cd
+i
+9app/src/main/java/com/tamago/nutriencehelper/AppModule.kt,2/a/2a65a033f633e919cc34c604e6343f8492f1e7eb

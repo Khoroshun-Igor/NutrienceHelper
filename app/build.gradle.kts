@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -20,6 +22,9 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField("String", "RECIPE_API_KEY", "\"\"")
+        buildConfigField("String", "RECIPE_API_BASE_URL", "\"\"")
     }
 
     buildTypes {
@@ -39,6 +44,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {
@@ -61,6 +67,14 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.dagger.hilt.android)
+    kapt(libs.dagger.hilt.compiler)
+    implementation(libs.jakarta.inject.api)
+
+    implementation(project(":database"))
+    implementation(project(":recipe-data"))
+    implementation(project(":spoonacularapi"))
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
