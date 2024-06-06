@@ -7,7 +7,6 @@ import com.tamago.spoonacularapi.SpoonacularApi
 import com.tamago.spoonacularapi.models.RecipeDto
 import com.tamago.spoonacularapi.models.ResponseDto
 import jakarta.inject.Inject
-import jakarta.inject.Singleton
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.combine
@@ -25,7 +24,6 @@ import kotlinx.coroutines.flow.onEach
 class RecipesRepository @Inject constructor(
     private val dataBase: RecipesDataBase,
     private val api: SpoonacularApi,
-//    private val mergeStrategy: MergeStrategy<RequestResult<List<Recipe>>>,
 ) {
     fun getAll(
         mergeStrategy: MergeStrategy<RequestResult<List<Recipe>>> = DefaultRequestResponseMergeStrategy(),

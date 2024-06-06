@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/recipes-main" />
             <option value="$PROJECT_DIR$/recipe-data" />
+            <option value="$PROJECT_DIR$/recipes-common" />
             <option value="$PROJECT_DIR$/spoonacularapi" />
           </set>
         </option>
