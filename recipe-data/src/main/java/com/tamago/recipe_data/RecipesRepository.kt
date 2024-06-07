@@ -1,5 +1,6 @@
 package com.tamago.recipe_data
 
+import com.tamago.common.Logger
 import com.tamago.recipe.database.RecipesDataBase
 import com.tamago.recipe.database.models.RecipeDbo
 import com.tamago.recipe_data.model.Recipe
@@ -9,6 +10,7 @@ import com.tamago.spoonacularapi.models.ResponseDto
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
@@ -24,6 +26,7 @@ import kotlinx.coroutines.flow.onEach
 class RecipesRepository @Inject constructor(
     private val dataBase: RecipesDataBase,
     private val api: SpoonacularApi,
+    private val logger: Logger
 ) {
     fun getAll(
         mergeStrategy: MergeStrategy<RequestResult<List<Recipe>>> = DefaultRequestResponseMergeStrategy(),
@@ -47,6 +50,10 @@ class RecipesRepository @Inject constructor(
     fun getAllFromDatabase(): Flow<RequestResult<List<Recipe>>> {
         val dbRequest = dataBase.recipeDao::getAll.asFlow()
             .map { RequestResult.Success(it) }
+            .catch {
+                RequestResult.Error<List<RecipeDbo>>(error = it)
+                logger.e(LOG_TAG, "Error getting from database = $it")
+            }
 
         val start = flowOf<RequestResult<List<RecipeDbo>>>(RequestResult.InProgress())
         return merge(start, dbRequest).map { result ->
@@ -63,6 +70,11 @@ class RecipesRepository @Inject constructor(
                     saveNetResponseToCache(result.getOrThrow().results)
                 }
             }
+            .onEach { result ->
+                if (result.isFailure){
+                    logger.e(LOG_TAG, "Error getting from server = ${result.exceptionOrNull()}")
+                }
+            }
             .map { it.toRequestResult() }
 
         val start = flowOf<RequestResult<ResponseDto<RecipeDto>>>(RequestResult.InProgress())
@@ -74,16 +86,20 @@ class RecipesRepository @Inject constructor(
         }
     }
 
-    private fun saveNetResponseToCache(data: Set<RecipeDto>) {
+    private suspend fun saveNetResponseToCache(data: Set<RecipeDto>) {
         val dbos = data
             .map { recipeDto -> recipeDto.toRecipeDBO() }
         dataBase.recipeDao.insert(dbos)
+
+    }
+    private companion object{
+        const val LOG_TAG = "RecipesRepository"
     }
 
-    fun search(query: String): Flow<Recipe> {
-        api.searchRecipe(query)
-        TODO()
-    }
+//    fun search(query: String): Flow<Recipe> {
+//        api.searchRecipe(query)
+//        TODO()
+//    }
 
 //    fun fetchLatest(): Flow<RequestResult<List<Recipe>>> {
 //        return getAllFromServer()

@@ -61,22 +61,22 @@ internal class DefaultRequestResponseMergeStrategy<T: Any> : MergeStrategy<Reque
         cache: RequestResult.Success<T>,
         server: RequestResult.Success<T>,
     ): RequestResult<T>{
-        return RequestResult.InProgress(server.data)
+        return RequestResult.Success(server.data)
     }
 
     private fun merge(
         cache: RequestResult.InProgress<T>,
         server: RequestResult.Error<T>,
     ): RequestResult<T>{
-        return RequestResult.InProgress(cache.data)
+        return RequestResult.Error(server.data?: cache.data, error = server.error)
     }
 
     private fun merge(
         cache: RequestResult.Error<T>,
         server: RequestResult.InProgress<T>,
     ): RequestResult<T>{
-        return RequestResult.InProgress(server.data)
-    }
+        return RequestResult.Error(cache.data?: server.data, error = cache.error)
+    } //TODO
 
     private fun merge(
         cache: RequestResult.Success<T>,
@@ -97,5 +97,5 @@ internal class DefaultRequestResponseMergeStrategy<T: Any> : MergeStrategy<Reque
         server: RequestResult.Error<T>,
     ): RequestResult<T>{
         return RequestResult.InProgress(server.data)
-    }
+    } //TODO
 }

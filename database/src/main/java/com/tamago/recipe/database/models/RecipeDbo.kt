@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "recipes")
 data class RecipeDbo (
     @PrimaryKey(autoGenerate = true)
-    val dbId: Long,
+    val dbId: Long = 0,
     @ColumnInfo("id")
     val id: Int,
     @ColumnInfo("title")

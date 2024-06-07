@@ -37,8 +37,6 @@ z
 Jspoonacularapi/src/main/java/com/tamago/spoonacularapi/models/RecipeDTO.kt,8/a/8a42cffb964eb84da2c92a69ab5523094f05a200
 ƒ
 Sfeatures/recipes-main/src/main/java/com/tamago/recipes_main/GetAllRecipesUseCase.kt,e/7/e7aeed096a68918b53590671a0ea079a1805b6ef
-{
-Kfeatures/recipes-main/src/main/java/com/tamago/recipes_main/model/Recipe.kt,0/d/0d6875c71629c15f47731225be578a16fc9d1138
 k
 ;recipe-data/src/main/java/com/tamago/recipe_data/Mappers.kt,a/d/ada89932be926c2ef581b0e852ed35fce7b9bec6
 x
@@ -51,16 +49,10 @@ z
 Jspoonacularapi/src/main/java/com/tamago/spoonacularapi/models/RecipeDto.kt,3/5/353d4660e86f583db28391cc5c31c2d3bd325533
 |
 Lspoonacularapi/src/main/java/com/tamago/spoonacularapi/models/ResponseDto.kt,4/9/494940b5601229a16cbef0c750be6e69e9c7aed4
-€
-Precipe-data/src/main/java/com/tamago/recipe_data/RequestRespomseMergeStrategy.kt,7/1/7126e0f6e21f7ca01adc6038d506c48ad317c136
-€
-Precipe-data/src/main/java/com/tamago/recipe_data/RequestResponseMergeStrategy.kt,9/4/947629f73214db06da0b9ccf210a39c29dea58be
 q
 Arecipe-data/src/main/java/com/tamago/recipe_data/RequestResult.kt,0/5/05a93334b3b527cb0e2a9f4a7a24e78a4fe9b0bc
 q
 Arecipe-data/src/main/java/com/tamago/recipe_data/MergeStrategy.kt,2/e/2ee166734ea51a3d3296e766c1b94eea2ba38df4
-o
-?app/src/main/java/com/tamago/nutriencehelper/NewsApplication.kt,3/1/311d643c84f3f8dc5ce7c38abfdd50fff8e225a7
 P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 r
@@ -97,3 +89,11 @@ Q
 !recipes-common/proguard-rules.pro,4/2/422f71165cdc203dd2522708d33c121bc5d61530
 Q
 !recipes-common/consumer-rules.pro,b/3/b3941eeaef324cfba7d97b1ea5718ca843f6416d
+}
+Mfeatures/recipes-main/src/main/java/com/tamago/recipes_main/model/RecipeUI.kt,6/0/60cf42ff18cb60cb837ab41bbb540c2db134ba89
+u
+Espoonacularapi/src/main/java/com/tamago/spoonacularapi/models/Sort.kt,9/b/9b9bac72762dd3524bd132c50f79f835a7ec4e09
+~
+Nspoonacularapi/src/main/java/com/tamago/spoonacularapi/models/SortDirection.kt,3/c/3c4c317a91fb10972df1f738cc4b5598d3370bda
+h
+8recipes-common/src/main/java/com/tamago/common/Logger.kt,4/4/44bf04ecaf9f74cc3b1ca2a02874f18f615074b5

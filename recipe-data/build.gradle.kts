@@ -43,4 +43,5 @@ dependencies {
 
     implementation(project(":database"))
     implementation(project(":spoonacularapi"))
+    implementation(project(":recipes-common"))
 }

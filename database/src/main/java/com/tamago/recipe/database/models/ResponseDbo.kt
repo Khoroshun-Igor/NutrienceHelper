@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class ResponseDbo<E>(
     @PrimaryKey(autoGenerate = true)
-    val dbId: Long,
+    val dbId: Long = 0,
     @ColumnInfo("offset")
     val offset: Int,
     @ColumnInfo("number")

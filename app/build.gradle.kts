@@ -23,8 +23,8 @@ android {
             useSupportLibrary = true
         }
 
-        buildConfigField("String", "RECIPE_API_KEY", "\"\"")
-        buildConfigField("String", "RECIPE_API_BASE_URL", "\"\"")
+        buildConfigField("String", "RECIPE_API_KEY", "\"c189afc125b846a7922c67b3fbcf0a55\"")
+        buildConfigField("String", "RECIPE_API_BASE_URL", "\"https://api.spoonacular.com\"")
     }
 
     buildTypes {
@@ -66,14 +66,27 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.runtime.android)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.dagger.hilt.android)
+    implementation(libs.androidx.room.ktx)
     kapt(libs.dagger.hilt.compiler)
+    implementation(libs.retrofit)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlin.serialization.json)
+    implementation(libs.androidx.annotation)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
+    implementation (libs.retrofit.adapters.result)
     implementation(libs.jakarta.inject.api)
 
     implementation(project(":database"))
     implementation(project(":recipe-data"))
     implementation(project(":spoonacularapi"))
+    implementation(project(":recipes-common"))
+    implementation(project(":features:recipes-main"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

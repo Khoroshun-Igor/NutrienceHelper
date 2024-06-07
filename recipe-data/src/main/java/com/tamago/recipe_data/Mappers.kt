@@ -26,5 +26,10 @@ internal fun RecipeDto.toRecipe(): Recipe {
 }
 
 internal fun RecipeDto.toRecipeDBO() : RecipeDbo {
-    TODO()
+    return RecipeDbo(
+        id = this.id,
+        title = this.title,
+        image = this.image,
+        imageType = this.imageType,
+    )
 }

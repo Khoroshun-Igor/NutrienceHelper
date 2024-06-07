@@ -19,5 +19,5 @@ interface RecipeDao {
     fun observeAll(): Flow<List<RecipeDbo>>
 
     @Insert
-    fun insert(recipesDBO: List<RecipeDbo>)
+    suspend fun insert(recipesDBO: List<RecipeDbo>)
 }
