@@ -1,6 +1,7 @@
 [versions]
 agp = "8.4.1"
 annotation = "1.8.0"
+coilCompose = "2.6.0"
 jakartaInjectApi = "2.0.1"
 kotlin = "2.0.0"
 kotlin-serialization-json = "1.7.0-RC"
@@ -28,6 +29,7 @@ foundationAndroid = "1.6.7"
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 jakarta-inject-api = { module = "jakarta.inject:jakarta.inject-api", version.ref = "jakartaInjectApi" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 

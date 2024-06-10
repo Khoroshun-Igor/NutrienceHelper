@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.androidx.foundation.android)
     kapt(libs.dagger.hilt.compiler)
     implementation(libs.jakarta.inject.api)
+    implementation(libs.coil.compose)
 
 
     implementation(project(":recipe-data"))

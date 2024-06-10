@@ -313,3 +313,11 @@ w
 G.idea/sonarlint/issuestore/b/b/bb852fb4cab53a076682540635e4b956e9fe9c3b,8/e/8ee5e9eb56f9c86393b6470a4c3206f41539b290
 w
 G.idea/sonarlint/issuestore/b/8/b86279fa0f08a48815766b267d844d29fcd222d5,f/8/f86b40dee983d2dfc084335251baec50210ce2e0
+Ä
+Pfeatures/recipes-main/src/main/java/com/tamago/recipes_main/components/TopBar.kt,b/f/bf92dbfd6116f3698903e6495e8fd21a67b0f9e0
+É
+Sfeatures/recipes-main/src/main/java/com/tamago/recipes_main/components/BottomBar.kt,1/d/1ddee1966f0fe13c290c9ddd3875f35b6f58dc8c
+Ñ
+Tfeatures/recipes-main/src/main/java/com/tamago/recipes_main/components/RecipeCard.kt,a/6/a63242028bd5d609544c5768b7f42834afaf4db1
+è
+_features/recipes-main/src/main/java/com/tamago/recipes_main/components/DrawerNavigationItems.kt,f/7/f71ed0059eadaf496f3e4ed98f77e5a44ddc2616
