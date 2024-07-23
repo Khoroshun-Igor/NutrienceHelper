@@ -23,6 +23,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -54,38 +55,49 @@ internal fun RecipeCard(
     var isAdded by remember {
         mutableStateOf(false)
     }
+    var isImageVisible by remember {
+        mutableStateOf(true)
+    }
 
     Column(
         modifier = modifier
             .width(180.dp)
             .background(MaterialTheme.colorScheme.surfaceContainer)
     ) {
+
         Box(
             contentAlignment = Alignment.TopCenter
         ) {
-            SubcomposeAsyncImage(
-                model = recipe.image,
-                contentDescription = recipe.title,
-                alignment = Alignment.Center,
-                modifier = modifier
-                    .padding(8.dp)
-                    .size(164.dp),
-                contentScale = ContentScale.Crop
-            ) {
-                val state = painter.state
-                when (state) {
-                    AsyncImagePainter.State.Empty -> Toast.makeText(
-                        LocalContext.current,
-                        "Empty",
-                        Toast.LENGTH_LONG
-                    ).show()
+            if(isImageVisible) {
+                SubcomposeAsyncImage(
+                    model = recipe.image,
+                    onState = { state ->
+                        if (state is AsyncImagePainter.State.Error) {
+                            isImageVisible = false
+                        }
+                    },
+                    contentDescription = recipe.title,
+                    alignment = Alignment.Center,
+                    modifier = modifier
+                        .padding(8.dp)
+                        .size(164.dp),
+                    contentScale = ContentScale.Crop
+                ) {
+                    val state = painter.state
+                    when (state) {
+                        AsyncImagePainter.State.Empty -> Toast.makeText(
+                            LocalContext.current,
+                            "Empty",
+                            Toast.LENGTH_LONG
+                        ).show()
 
-                    is AsyncImagePainter.State.Error -> Toast.makeText(
-                        LocalContext.current, "Connection Error", Toast.LENGTH_LONG
-                    ).show()
+                        is AsyncImagePainter.State.Error -> Toast.makeText(
+                            LocalContext.current, "Connection Error", Toast.LENGTH_LONG
+                        ).show()
 
-                    is AsyncImagePainter.State.Loading -> CircularProgressIndicator()
-                    is AsyncImagePainter.State.Success -> SubcomposeAsyncImageContent()
+                        is AsyncImagePainter.State.Loading -> CircularProgressIndicator()
+                        is AsyncImagePainter.State.Success -> SubcomposeAsyncImageContent()
+                    }
                 }
             }
 
