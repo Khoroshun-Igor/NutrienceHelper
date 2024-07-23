@@ -1,3 +1,5 @@
+@file:Suppress("FunctionName")
+
 package com.tamago.common
 
 import android.util.Log
@@ -10,7 +12,7 @@ interface Logger {
     fun e(tag: String, message: String)
 }
 
-fun AndroidLogcatLogger(): Logger = object : Logger{
+fun androidLogcatLogger(): Logger = object : Logger{
     override fun d(tag: String, message: String) {
         Log.d(tag, message)
     }

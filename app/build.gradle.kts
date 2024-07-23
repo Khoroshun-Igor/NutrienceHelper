@@ -87,6 +87,7 @@ dependencies {
     implementation(project(":spoonacularapi"))
     implementation(project(":recipes-common"))
     implementation(project(":features:recipes-main"))
+    implementation(project(":recipes-uikit"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

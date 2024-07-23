@@ -33,16 +33,28 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    packagingOptions{
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            merges += "META-INF/LICENSE.md"
+            merges += "META-INF/LICENSE-notice.md"
+        }
+    }
 }
 
 dependencies {
 
     implementation(libs.androidx.core.ktx)
+    androidTestImplementation(libs.junit.jupiter)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.kotlinx.coroutine.android)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.serialization.json.v171)
+    implementation(libs.converter.gson)
 
     testImplementation(libs.junit)
 

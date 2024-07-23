@@ -44,4 +44,6 @@ dependencies {
     implementation(project(":database"))
     implementation(project(":spoonacularapi"))
     implementation(project(":recipes-common"))
+    implementation(libs.androidx.junit.ktx)
+    testImplementation("junit:junit:4.12")
 }

@@ -1,18 +1,13 @@
 package com.tamago.spoonacularapi
 
 import androidx.annotation.IntRange
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
 import com.tamago.spoonacularapi.models.RecipeDto
+import com.tamago.spoonacularapi.models.RecipeInfoDto
 import com.tamago.spoonacularapi.models.ResponseDto
 import com.tamago.spoonacularapi.models.Sort
 import com.tamago.spoonacularapi.models.SortDirection
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.create
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -29,32 +24,12 @@ interface SpoonacularApi {
         @Query("sort") sort: Sort? = null,
         @Query("sortDirection") sortDirection: SortDirection? = null,
     ): Result<ResponseDto<RecipeDto>>
-}
 
-//fun SpoonacularApi(
-//    baseUrl: String,
-//    apiKey: String,
-//    okHttpClient: OkHttpClient? = null,
-//    json: Json = Json,
-//): SpoonacularApi{
-//    return retrofit(baseUrl, apiKey, okHttpClient, json).create()
-//}
-//
-//private fun retrofit(
-//    baseUrl: String,
-//    apiKey: String,
-//    okHttpClient: OkHttpClient?,
-//    json: Json,
-//): Retrofit{
-//    val converterFactory = json.asConverterFactory(MediaType.get("application/json"))
-//    val modifiedOkHttpClient = (okHttpClient?.newBuilder() ?: OkHttpClient.Builder())
-//        .addInterceptor(RecipeApiKeyInterceptor(apiKey))
-//        .build()
-//
-//    return Retrofit.Builder()
-//        .baseUrl(baseUrl)
-//        .addConverterFactory(converterFactory)
-//        .addCallAdapterFactory(ResultCallAdapterFactory.create())
-//        .client(modifiedOkHttpClient)
-//        .build()
-//}
+    @GET("/recipes/{id}/information")
+    suspend fun searchRecipeById(
+        @Path("id") id: Int,
+        @Query("includeNutrition") includeNutrition: Boolean = false,
+        @Query("addWinePairing") addWinePairing: Boolean = false,
+        @Query("addTasteData") addTasteData: Boolean = false,
+    ): Result<RecipeInfoDto>
+}

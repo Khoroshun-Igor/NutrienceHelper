@@ -15,8 +15,8 @@ import kotlinx.coroutines.flow.map
 internal class GetAllRecipesUseCase @Inject constructor(
     private val repository: RecipesRepository,
 ) {
-    operator fun invoke(): Flow<RequestResult<List<RecipeUI>>> {
-        return repository.getAll()
+    operator fun invoke(query: String?): Flow<RequestResult<List<RecipeUI>>> {
+        return repository.getAll(query)
             .map { requestResult ->
                 requestResult.map { recipes -> recipes.map { it.toUiRecipe() } }
             }

@@ -15,9 +15,15 @@ interface RecipeDao {
     @Query("SELECT * FROM recipes")
     suspend fun getAll(): List<RecipeDbo>
 
+    @Query("SELECT * FROM recipes WHERE id = :id")
+    suspend fun getRecipeById(id: Int): List<RecipeDbo>
+
     @Query("SELECT * FROM recipes")
     fun observeAll(): Flow<List<RecipeDbo>>
 
     @Insert
     suspend fun insert(recipesDBO: List<RecipeDbo>)
+
+    @Insert
+    suspend fun insertRecipe(recipesDBO: RecipeDbo)
 }

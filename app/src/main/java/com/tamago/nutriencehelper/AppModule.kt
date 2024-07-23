@@ -3,7 +3,7 @@ package com.tamago.nutriencehelper
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
-import com.tamago.common.AndroidLogcatLogger
+import com.tamago.common.androidLogcatLogger
 import com.tamago.common.AppDispatchers
 import com.tamago.common.Logger
 import com.tamago.recipe.database.RecipesDataBase
@@ -62,7 +62,7 @@ object AppModule {
     }
 
     @Provides
-    fun provideLogger(): Logger = AndroidLogcatLogger()
+    fun provideLogger(): Logger = androidLogcatLogger()
 
 //    @Provides
 //    @Singleton

@@ -30,13 +30,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tamago.recipes_main.components.BottomBar
 import com.tamago.recipes_main.components.DrawerNavigationItem
 import com.tamago.recipes_main.components.RecipeCard
 import com.tamago.recipes_main.components.TopBar
-import com.tamago.recipes_main.model.RecipeUI
+import com.tamago.recipes_uikit.R
 
 /**
  * Created by Igor Khoroshun on 31.05.2024.
@@ -54,7 +55,9 @@ internal fun RecipeMainScreen(
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
-        topBar = { TopBar() },
+        topBar = {
+            TopBar()
+        },
         bottomBar = { BottomBar() },
         content = {
             RecipeStateContent(
@@ -68,50 +71,15 @@ internal fun RecipeMainScreen(
 @Composable
 internal fun RecipeStateContent(
     viewModel: RecipeMainViewModel,
-    modifier: Modifier
-){
+    modifier: Modifier = Modifier,
+) {
     val state by viewModel.state.collectAsState()
-    when (val currentState = state) {
-        is State.Success -> RecipesContent(currentState.recipes)
-        is State.Error -> RecipesWithError(currentState.recipes)
-        is State.Loading -> RecipesDuringUpdate(currentState.recipes)
-        State.None -> RecipesEmpty()
+    val currentState = state
+    if (currentState != State.None) RecipesContent(currentState)
+    else Box(contentAlignment = Alignment.Center) {
+        Text(text = stringResource(R.string.no_recipes))
     }
-}
 
-@Composable
-internal fun RecipesWithError(
-    recipes: List<RecipeUI>?
-) {
-    Box(contentAlignment = Alignment.Center) {
-        Text(text = "Error during update")
-    }
-    Column {
-        if (recipes != null) {
-            RecipesContent(recipes = recipes)
-        }
-    }
-}
-
-@Composable
-internal fun RecipesDuringUpdate(
-    recipes: List<RecipeUI>?
-) {
-    Box(contentAlignment = Alignment.Center) {
-        CircularProgressIndicator()
-    }
-    Column {
-        if (recipes != null) {
-            RecipesContent(recipes = recipes)
-        }
-    }
-}
-
-@Composable
-internal fun RecipesEmpty() {
-    Box(contentAlignment = Alignment.Center) {
-        Text(text = "No recipes")
-    }
 }
 
 @Composable
@@ -119,7 +87,7 @@ internal fun NavigationDrawer(
     viewModel: RecipeMainViewModel,
     modifier: Modifier = Modifier,
     drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed)
-){
+) {
     val drawerState = drawerState
     val items = listOf(
         DrawerNavigationItem.Home,
@@ -142,13 +110,13 @@ internal fun NavigationDrawer(
                 ) {
                     Image(
                         imageVector = Icons.Default.AccountCircle,
-                        contentDescription = "Account",
+                        contentDescription = stringResource(R.string.account),
                         modifier = modifier
                             .padding(8.dp)
                             .size(60.dp)
                     )
                     Text(
-                        text = "guest",
+                        text = stringResource(R.string.guest),
                         modifier = modifier.padding(8.dp)
                     )
                 }
@@ -157,7 +125,7 @@ internal fun NavigationDrawer(
                         .padding(16.dp)
                 )
                 items.forEach { item ->
-                    if(item.text == "Sign out"){
+                    if (item.text == stringResource(R.string.sign_out)) {
                         Spacer(modifier = modifier.weight(1f))
                     }
                     Row(
@@ -185,11 +153,21 @@ internal fun NavigationDrawer(
 }
 
 @Composable
-private fun RecipesContent(recipes: List<RecipeUI>) {
-    LazyVerticalGrid(columns = GridCells.Adaptive(minSize = 180.dp)) {
-        items(recipes){recipe ->
-                key(recipe.id) {
-                    RecipeCard(recipe)
+private fun RecipesContent(currentState: State) {
+    if(currentState is State.Error){
+        Box(contentAlignment = Alignment.Center) {
+            Text(text = stringResource(R.string.error_during_update))
+        }
+    }
+    if(currentState is State.Loading){
+        Box(contentAlignment = Alignment.Center) {
+            CircularProgressIndicator()
+        }
+    }
+    if(currentState.recipes != null)LazyVerticalGrid(columns = GridCells.Adaptive(minSize = 180.dp)) {
+        items(currentState.recipes) { recipe ->
+            key(recipe.id) {
+                RecipeCard(recipe)
             }
         }
     }

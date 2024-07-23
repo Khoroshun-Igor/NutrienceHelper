@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="border">2dp</dimen>
+    <dimen name="min_padding">8dp</dimen>
+    <dimen name="middle_padding">16dp</dimen>
+    <dimen name="max_padding">32dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+    <dimen name="recipe_image_size">200dp</dimen>
+    <dimen name="text_width">86dp</dimen>
+    <dimen name="recipe_card_width">208dp</dimen>
+    <dimen name="avatar_size">60dp</dimen>
+    <dimen name="drawer_size">320dp</dimen>
+</resources>

@@ -1,6 +1,7 @@
 package com.tamago.recipes_main.components
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -55,7 +56,9 @@ internal fun RecipeCard(
     }
 
     Column(
-        modifier = modifier.width(180.dp)
+        modifier = modifier
+            .width(180.dp)
+            .background(MaterialTheme.colorScheme.surfaceContainer)
     ) {
         Box(
             contentAlignment = Alignment.TopCenter

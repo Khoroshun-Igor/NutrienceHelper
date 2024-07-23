@@ -75,7 +75,7 @@ internal class DefaultRequestResponseMergeStrategy<T: Any> : MergeStrategy<Reque
         cache: RequestResult.Error<T>,
         server: RequestResult.InProgress<T>,
     ): RequestResult<T>{
-        return RequestResult.Error(cache.data?: server.data, error = cache.error)
+        return RequestResult.Error(cache.data ?: server.data, error = cache.error)
     }
 
     private fun merge(
@@ -96,6 +96,6 @@ internal class DefaultRequestResponseMergeStrategy<T: Any> : MergeStrategy<Reque
         cache: RequestResult.Error<T>,
         server: RequestResult.Error<T>,
     ): RequestResult<T>{
-        return RequestResult.InProgress(server.data)
-    } //TODO
+        return RequestResult.Error(error("Fatal error"))
+    }
 }

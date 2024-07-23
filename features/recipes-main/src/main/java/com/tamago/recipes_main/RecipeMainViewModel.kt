@@ -1,5 +1,8 @@
 package com.tamago.recipes_main
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.`mutableStateOf`
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tamago.recipe_data.RequestResult
@@ -19,10 +22,9 @@ import javax.inject.Provider
 @HiltViewModel
 internal class RecipeMainViewModel @Inject constructor(
     getAllRecipesUseCase: Provider<GetAllRecipesUseCase>,
-//    private val repository: RecipesRepository,
 ) : ViewModel() {
-
-    val state: StateFlow<State> = getAllRecipesUseCase.get().invoke()
+    var query: String? by mutableStateOf(null)
+    val state: StateFlow<State> = getAllRecipesUseCase.get().invoke(query)
         .map { it.toState() }
         .stateIn(viewModelScope, SharingStarted.Lazily, State.None)
 
@@ -38,9 +40,9 @@ private fun RequestResult<List<RecipeUI>>.toState(): State {
     }
 }
 
-internal sealed class State {
-    object None : State()
-    class Loading(val recipes: List<RecipeUI>? = null) : State()
-    class Error(val recipes: List<RecipeUI>? = null) : State()
-    class Success(val recipes: List<RecipeUI>) : State()
+internal sealed class State(val recipes: List<RecipeUI>?) {
+    data object None : State(recipes = null)
+    class Loading(recipes: List<RecipeUI>? = null) : State(recipes)
+    class Error(recipes: List<RecipeUI>? = null) : State(recipes)
+    class Success(recipes: List<RecipeUI>) : State(recipes)
 }

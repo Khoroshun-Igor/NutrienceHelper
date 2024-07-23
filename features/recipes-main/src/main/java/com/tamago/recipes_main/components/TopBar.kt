@@ -13,8 +13,9 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+import com.tamago.recipes_uikit.R
 
 /**
  * Created by Igor Khoroshun on 10.06.2024.
@@ -28,23 +29,23 @@ internal fun TopBar(
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     TopAppBar(
         title = {
-            Text(
-                text = "Nutrience Helper",
-                modifier = modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center
-            )
+                Text(
+                    text = stringResource(R.string.app_name),
+                    modifier = modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center
+                )
         },
         navigationIcon = {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.List,
-                contentDescription = "menu"
+                contentDescription = stringResource(R.string.menu)
             )
         },
         actions = {
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
                     imageVector = Icons.Default.Refresh,
-                    contentDescription = "refresh"
+                    contentDescription = stringResource(R.string.refresh)
                 )
             }
         },
@@ -52,10 +53,10 @@ internal fun TopBar(
     )
 }
 
-@Preview
-@Composable
-internal fun TopBarPreview(
-
-) {
-    TopBar()
-}
+//@Preview
+//@Composable
+//internal fun TopBarPreview(
+//
+//) {
+//    TopBar()
+//}

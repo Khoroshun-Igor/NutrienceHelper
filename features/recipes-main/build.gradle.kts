@@ -66,6 +66,7 @@ dependencies {
 
 
     implementation(project(":recipe-data"))
+    implementation(project(":recipes-uikit"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
