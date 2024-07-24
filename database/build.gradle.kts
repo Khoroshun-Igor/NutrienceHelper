@@ -35,6 +35,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    @Suppress("UNUSED_EXPRESSION")
     fun Packaging.() {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
