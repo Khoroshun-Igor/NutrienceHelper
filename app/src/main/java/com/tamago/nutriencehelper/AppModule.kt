@@ -3,9 +3,9 @@ package com.tamago.nutriencehelper
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
-import com.tamago.common.androidLogcatLogger
 import com.tamago.common.AppDispatchers
 import com.tamago.common.Logger
+import com.tamago.common.androidLogcatLogger
 import com.tamago.recipe.database.RecipesDataBase
 import com.tamago.spoonacularapi.SpoonacularApi
 import dagger.Module
@@ -29,7 +29,8 @@ object AppModule {
 
     @Provides
     @Named("OkHttp")
-    fun provideOkHttp(@ApplicationContext context: Context): OkHttpClient{
+    @Suppress("UnusedParameter")
+    fun provideOkHttp(@ApplicationContext context: Context): OkHttpClient {
         val apiKey = BuildConfig.RECIPE_API_KEY
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
@@ -44,7 +45,7 @@ object AppModule {
 
     @Provides
     @Named("Retrofit")
-    fun provideRetrofit(@Named("OkHttp") okHttpClient: OkHttpClient): Retrofit{
+    fun provideRetrofit(@Named("OkHttp") okHttpClient: OkHttpClient): Retrofit {
         val baseUrl = BuildConfig.RECIPE_API_BASE_URL
         val converterFactory = Json { ignoreUnknownKeys = true }
             .asConverterFactory("application/json".toMediaType())
@@ -63,15 +64,6 @@ object AppModule {
 
     @Provides
     fun provideLogger(): Logger = androidLogcatLogger()
-
-//    @Provides
-//    @Singleton
-//    fun provideRecipeApi(): SpoonacularApi{
-//        return SpoonacularApi(
-//            baseUrl = BuildConfig.RECIPE_API_BASE_URL,
-//            apiKey = BuildConfig.RECIPE_API_KEY,
-//        )
-//    }
 
     @Provides
     fun provideDatabase(

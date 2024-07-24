@@ -79,7 +79,7 @@ dependencies {
     implementation(libs.kotlin.serialization.json)
     implementation(libs.androidx.annotation)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
-    implementation (libs.retrofit.adapters.result)
+    implementation(libs.retrofit.adapters.result)
     implementation(libs.jakarta.inject.api)
 
     implementation(project(":database"))
@@ -87,7 +87,7 @@ dependencies {
     implementation(project(":spoonacularapi"))
     implementation(project(":recipes-common"))
     implementation(project(":features:recipes-main"))
-    implementation(project(":recipes-uikit"))
+    implementation(project(":recipesuikit"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

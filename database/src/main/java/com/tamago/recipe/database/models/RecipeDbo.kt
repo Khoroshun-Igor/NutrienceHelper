@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "recipes")
-data class RecipeDbo (
+data class RecipeDbo(
     @PrimaryKey(autoGenerate = true)
     val dbId: Long = 0,
     @ColumnInfo("id")

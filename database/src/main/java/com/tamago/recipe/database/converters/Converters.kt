@@ -6,8 +6,6 @@ import com.google.gson.reflect.TypeToken
 import com.tamago.recipe.database.models.IngredientDbo
 import java.lang.reflect.Type
 import java.math.BigDecimal
-import java.util.Arrays
-import java.util.stream.Collectors
 
 /**
  * Created by Igor Khoroshun on 22.07.2024.
@@ -32,7 +30,7 @@ class Converters {
 
     @TypeConverter
     fun fromJsonToIngredient(value: String): Set<IngredientDbo> {
-        val setIngredientDbo: Type = object : TypeToken<List<IngredientDbo>>(){}.type
+        val setIngredientDbo: Type = object : TypeToken<List<IngredientDbo>>() {}.type
         return Gson().fromJson(value, setIngredientDbo)
     }
 }

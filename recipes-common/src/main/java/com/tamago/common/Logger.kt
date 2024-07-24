@@ -12,7 +12,7 @@ interface Logger {
     fun e(tag: String, message: String)
 }
 
-fun androidLogcatLogger(): Logger = object : Logger{
+fun androidLogcatLogger(): Logger = object : Logger {
     override fun d(tag: String, message: String) {
         Log.d(tag, message)
     }
@@ -20,5 +20,4 @@ fun androidLogcatLogger(): Logger = object : Logger{
     override fun e(tag: String, message: String) {
         Log.e(tag, message)
     }
-
 }

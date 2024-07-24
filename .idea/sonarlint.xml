@@ -3,7 +3,11 @@
   <component name="SonarLintProjectSettings">
     <option name="moduleMapping">
       <map>
-        <entry key="Nutrience_Helper.recipes-common" value="Nutrience_Helper.mylibrary" />
+        <entry key="Nutrience_Helper.features.recipesMain" value="Nutrience_Helper.features.recipes-main" />
+        <entry key="Nutrience_Helper.recipeData" value="Nutrience_Helper.recipe-data" />
+        <entry key="Nutrience_Helper.recipesUikit" value="Nutrience_Helper.recipes-uikit" />
+        <entry key="Nutrience_Helper.recipesuikit" value="Nutrience_Helper.recipes-uikit" />
+        <entry key="recipesCommon" value="Nutrience_Helper.mylibrary" />
       </map>
     </option>
   </component>

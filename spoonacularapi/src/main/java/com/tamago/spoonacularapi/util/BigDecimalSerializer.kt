@@ -12,12 +12,12 @@ import java.math.BigDecimal
  * Created by Igor Khoroshun on 14.06.2024.
  */
 
-object BigDecimalSerializer: KSerializer<BigDecimal> {
+object BigDecimalSerializer : KSerializer<BigDecimal> {
     override val descriptor: SerialDescriptor
         get() = PrimitiveSerialDescriptor("BigDecimal", PrimitiveKind.STRING)
 
     override fun deserialize(decoder: Decoder): BigDecimal {
-        return  decoder.decodeString().toBigDecimal()
+        return decoder.decodeString().toBigDecimal()
     }
 
     override fun serialize(encoder: Encoder, value: BigDecimal) {

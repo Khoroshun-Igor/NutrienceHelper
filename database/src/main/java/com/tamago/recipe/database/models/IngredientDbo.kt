@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
  */
 
 @Entity(tableName = "ingredients")
-data class IngredientDbo (
+data class IngredientDbo(
     @PrimaryKey(autoGenerate = true)
     val dbId: Long = 0,
     @ColumnInfo(name = "id")

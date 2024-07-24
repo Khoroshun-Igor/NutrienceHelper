@@ -25,20 +25,21 @@ class RecipesRoomDataBaseTest : TestCase() {
     private lateinit var dao: RecipeDao
 
     @Before
-    public override fun setUp(){
+    public override fun setUp() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(context, RecipesRoomDataBase::class.java).build()
         dao = db.recipeDao()
     }
 
     @After
-    fun closeDb(){
+    fun closeDb() {
         db.close()
     }
 
     @Test
     fun writeAndReadRecipe() = runBlocking {
-        val sandwich = RecipeDbo(dbId = 1, id = 1, title = "sandwich", image = "xxx.jpg", imageType = ".jpg")
+        val sandwich =
+            RecipeDbo(dbId = 1, id = 1, title = "sandwich", image = "xxx.jpg", imageType = ".jpg")
         val recipesList = listOf(sandwich)
         dao.insert(recipesList)
         val recipe = dao.getRecipeById(1)
