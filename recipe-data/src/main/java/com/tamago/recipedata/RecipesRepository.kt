@@ -5,7 +5,11 @@ package com.tamago.recipedata
 import com.tamago.common.Logger
 import com.tamago.recipe.database.RecipesDataBase
 import com.tamago.recipe.database.models.RecipeDbo
+import com.tamago.recipedata.mappers.toRecipe
+import com.tamago.recipedata.mappers.toRecipeDBO
+import com.tamago.recipedata.mappers.toRecipeInfo
 import com.tamago.recipedata.model.Recipe
+import com.tamago.recipedata.model.RecipeInfo
 import com.tamago.spoonacularapi.SpoonacularApi
 import com.tamago.spoonacularapi.models.RecipeDto
 import com.tamago.spoonacularapi.models.ResponseDto
@@ -91,15 +95,15 @@ class RecipesRepository @Inject constructor(
         }
     }
 
-//    fun getRecipeByIdFromServer(id: Int): Flow<RequestResult<Recipe>> {
-//        val apiRequest = flow { emit(api.searchRecipeById(id)) }
-//            .map { it.toRequestResult() }
-//        return apiRequest.map { result ->
-//            result.map { response ->
-//                response.toRecipeInfo
-//            }
-//        }
-//    }
+    fun getRecipeByIdFromServer(id: Int): Flow<RequestResult<RecipeInfo>> {
+        val apiRequest = flow { emit(api.searchRecipeById(id)) }
+            .map { it.toRequestResult() }
+        return apiRequest.map { result ->
+            result.map {
+                it.toRecipeInfo()
+            }
+        }
+    }
 
     private suspend fun saveNetResponseToCache(data: Set<RecipeDto>) {
         val dbos = data

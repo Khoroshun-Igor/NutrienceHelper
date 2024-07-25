@@ -7,9 +7,9 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.tamago.recipe.database.converters.Converters
 import com.tamago.recipe.database.dao.RecipeDao
-import com.tamago.recipe.database.models.IngredientDbo
 import com.tamago.recipe.database.models.RecipeDbo
 import com.tamago.recipe.database.models.RecipeInfoDbo
+import com.tamago.recipe.database.models.RecipeInformationExtendedIngredientsInnerDbo
 
 /**
  * Created by Igor Khoroshun on 31.05.2024.
@@ -24,9 +24,9 @@ class RecipesDataBase internal constructor(private val dataBase: RecipesRoomData
     entities = [
         RecipeDbo::class,
         RecipeInfoDbo::class,
-        IngredientDbo::class
+        RecipeInformationExtendedIngredientsInnerDbo::class
     ],
-    version = 3
+    version = 4
 )
 @TypeConverters(Converters::class)
 internal abstract class RecipesRoomDataBase : RoomDatabase() {

@@ -83,5 +83,5 @@ data class RecipeInfoDbo(
     @TypeConverters(Converters::class)
     val dishTypes: List<String>,
     @ColumnInfo("extendedIngredients")
-    val extendedIngredients: Set<IngredientDbo>,
+    val extendedIngredients: Set<RecipeInformationExtendedIngredientsInnerDbo>,
 )

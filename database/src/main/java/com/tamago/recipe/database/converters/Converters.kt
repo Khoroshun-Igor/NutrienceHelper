@@ -3,7 +3,7 @@ package com.tamago.recipe.database.converters
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.tamago.recipe.database.models.IngredientDbo
+import com.tamago.recipe.database.models.RecipeInformationExtendedIngredientsInnerDbo
 import java.lang.reflect.Type
 import java.math.BigDecimal
 
@@ -26,11 +26,13 @@ class Converters {
     fun toData(data: String) = data.split(",")
 
     @TypeConverter
-    fun fromIngredientToJson(ingredientSet: Set<IngredientDbo>) = Gson().toJson(ingredientSet)
+    fun fromIngredientToJson(ingredientSet: Set<RecipeInformationExtendedIngredientsInnerDbo>) =
+        Gson().toJson(ingredientSet)
 
     @TypeConverter
-    fun fromJsonToIngredient(value: String): Set<IngredientDbo> {
-        val setIngredientDbo: Type = object : TypeToken<List<IngredientDbo>>() {}.type
+    fun fromJsonToIngredient(value: String): Set<RecipeInformationExtendedIngredientsInnerDbo> {
+        val setIngredientDbo: Type =
+            object : TypeToken<List<RecipeInformationExtendedIngredientsInnerDbo>>() {}.type
         return Gson().fromJson(value, setIngredientDbo)
     }
 }

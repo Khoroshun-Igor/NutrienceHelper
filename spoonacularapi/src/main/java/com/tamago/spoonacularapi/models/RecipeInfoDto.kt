@@ -49,7 +49,7 @@ data class RecipeInfoDto(
     @Serializable(with = BigDecimalSerializer::class)
     val weightWatcherSmartPoints: BigDecimal,
     val dishTypes: List<String>,
-    val extendedIngredients: Set<ResponseIngredientDto>,
+    val extendedIngredients: Set<RecipeInformationExtendedIngredientsInnerDto>,
     val summary: String,
     val winePairingDto: WinePairingDto,
 )
