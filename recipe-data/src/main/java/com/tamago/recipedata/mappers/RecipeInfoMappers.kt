@@ -1,13 +1,11 @@
-@file:Suppress("MaximumLineLength", "MaxLineLength")
-
 package com.tamago.recipedata.mappers
 
 import com.tamago.recipe.database.models.RecipeInfoDbo
-import com.tamago.recipe.database.models.RecipeInformationExtendedIngredientsInnerDbo
 import com.tamago.recipedata.model.RecipeInfo
-import com.tamago.recipedata.model.RecipeInformationExtendedIngredientsInner
 import com.tamago.spoonacularapi.models.RecipeInfoDto
-import com.tamago.spoonacularapi.models.RecipeInformationExtendedIngredientsInnerDto
+import com.tamago.recipe.database.models.RecipeInformationExtendedIngredientsInnerDbo as IngredientsDbo
+import com.tamago.recipedata.model.RecipeInformationExtendedIngredientsInner as Ingredients
+import com.tamago.spoonacularapi.models.RecipeInformationExtendedIngredientsInnerDto as IngredientsDto
 
 internal fun RecipeInfoDto.toRecipeInfoDBO(): RecipeInfoDbo {
     return RecipeInfoDbo(
@@ -44,14 +42,14 @@ internal fun RecipeInfoDto.toRecipeInfoDBO(): RecipeInfoDbo {
     )
 }
 
-internal fun Set<RecipeInformationExtendedIngredientsInnerDto>.toSetOfRecipeInformationDBO(): Set<RecipeInformationExtendedIngredientsInnerDbo> {
+internal fun Set<IngredientsDto>.toSetOfRecipeInformationDBO(): Set<IngredientsDbo> {
     return this.map {
         it.toRecipeInformationDBO()
     }.toSet()
 }
 
-internal fun RecipeInformationExtendedIngredientsInnerDto.toRecipeInformationDBO(): RecipeInformationExtendedIngredientsInnerDbo {
-    return RecipeInformationExtendedIngredientsInnerDbo(
+internal fun IngredientsDto.toRecipeInformationDBO(): IngredientsDbo {
+    return IngredientsDbo(
         aisle = this.aisle,
         amount = this.amount,
         consistency = this.consistency,
@@ -134,14 +132,14 @@ internal fun RecipeInfoDbo.toRecipeInfo(): RecipeInfo {
     )
 }
 
-internal fun Set<RecipeInformationExtendedIngredientsInnerDbo>.toSetOfRecipeInformation(): Set<RecipeInformationExtendedIngredientsInner> {
+internal fun Set<IngredientsDbo>.toSetOfRecipeInformation(): Set<Ingredients> {
     return this.map {
         it.toRecipeInformation()
     }.toSet()
 }
 
-internal fun RecipeInformationExtendedIngredientsInnerDbo.toRecipeInformation(): RecipeInformationExtendedIngredientsInner {
-    return RecipeInformationExtendedIngredientsInner(
+internal fun IngredientsDbo.toRecipeInformation(): Ingredients {
+    return Ingredients(
         aisle = this.aisle,
         amount = this.amount,
         consistency = this.consistency,
@@ -154,14 +152,14 @@ internal fun RecipeInformationExtendedIngredientsInnerDbo.toRecipeInformation():
     )
 }
 
-internal fun Set<RecipeInformationExtendedIngredientsInnerDto>.toSetOfRecipeInformation(): Set<RecipeInformationExtendedIngredientsInner> {
+internal fun Set<IngredientsDto>.toSetOfRecipeInformation(): Set<Ingredients> {
     return this.map {
         it.toRecipeInformation()
     }.toSet()
 }
 
-internal fun RecipeInformationExtendedIngredientsInnerDto.toRecipeInformation(): RecipeInformationExtendedIngredientsInner {
-    return RecipeInformationExtendedIngredientsInner(
+internal fun IngredientsDto.toRecipeInformation(): Ingredients {
+    return Ingredients(
         aisle = this.aisle,
         amount = this.amount,
         consistency = this.consistency,
