@@ -24,6 +24,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+        create("benchmarkRelease") {
+        }
+        create("nonMinifiedRelease") {
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

@@ -1,4 +1,4 @@
-package com.tamago.recipesmain.components
+package com.tamago.recipesmain.components.drawers
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

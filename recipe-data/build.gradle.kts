@@ -22,6 +22,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+        create("benchmarkRelease") {
+        }
+        create("nonMinifiedRelease") {
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -45,5 +49,5 @@ dependencies {
     implementation(project(":spoonacularapi"))
     implementation(project(":recipes-common"))
     implementation(libs.androidx.junit.ktx)
-    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.13.2")
 }

@@ -1,4 +1,4 @@
-package com.tamago.recipesmain
+package com.tamago.recipesmain.viewmodels
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tamago.recipedata.RequestResult
 import com.tamago.recipesmain.model.RecipeUI
+import com.tamago.recipesmain.usecases.GetAllRecipesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

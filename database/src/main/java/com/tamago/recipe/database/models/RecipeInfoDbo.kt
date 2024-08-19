@@ -36,9 +36,9 @@ data class RecipeInfoDbo(
     @ColumnInfo("spoonacularScore")
     @TypeConverters(Converters::class)
     val spoonacularScore: BigDecimal,
-    @ColumnInfo("analyzedInstructions")
-    @TypeConverters(Converters::class)
-    val analyzedInstructions: List<String>,
+//    @ColumnInfo("analyzedInstructions")
+//    @TypeConverters(Converters::class)
+//    val analyzedInstructions: List<String>,
     @ColumnInfo("cheap")
     val cheap: Boolean,
     @ColumnInfo("creditsText")
@@ -57,8 +57,6 @@ data class RecipeInfoDbo(
     val glutenFree: Boolean,
     @ColumnInfo("instructions")
     val instructions: String,
-    @ColumnInfo("ketogenic")
-    val ketogenic: Boolean,
     @ColumnInfo("lowFodmap")
     val lowFodmap: Boolean,
     @ColumnInfo("occasions")
@@ -74,8 +72,6 @@ data class RecipeInfoDbo(
     val veryHealthy: Boolean,
     @ColumnInfo("veryPopular")
     val veryPopular: Boolean,
-    @ColumnInfo("whole30")
-    val whole30: Boolean,
     @ColumnInfo("weightWatcherSmartPoints")
     @TypeConverters(Converters::class)
     val weightWatcherSmartPoints: BigDecimal,

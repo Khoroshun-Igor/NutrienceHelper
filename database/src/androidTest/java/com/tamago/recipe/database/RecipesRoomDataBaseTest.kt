@@ -43,6 +43,6 @@ class RecipesRoomDataBaseTest : TestCase() {
         val recipesList = listOf(sandwich)
         dao.insert(recipesList)
         val recipe = dao.getRecipeById(1)
-        assertThat(recipe.get(0), equalTo(sandwich))
+        assertThat(recipe[0], equalTo(sandwich))
     }
 }

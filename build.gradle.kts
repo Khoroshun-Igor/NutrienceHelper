@@ -13,13 +13,14 @@ plugins {
     alias(libs.plugins.dagger.hilt.android) apply false
     alias(libs.plugins.kapt) apply false
     alias(libs.plugins.detect) apply false
+    alias(libs.plugins.android.test) apply false
+    alias(libs.plugins.baselineprofile) apply false
 }
 
 allprojects.onEach { project ->
     project.afterEvaluate {
         with(project.plugins) {
-            if (hasPlugin(libs.plugins.jetbrains.kotlin.android.get().pluginId)
-                ||
+            if (hasPlugin(libs.plugins.jetbrains.kotlin.android.get().pluginId) ||
                 hasPlugin(libs.plugins.jetbrains.kotlin.jvm.get().pluginId)
             ) {
                 apply(libs.plugins.detect.get().pluginId)
@@ -33,4 +34,3 @@ allprojects.onEach { project ->
         }
     }
 }
-

@@ -18,7 +18,7 @@ internal fun RecipeInfoDto.toRecipeInfoDBO(): RecipeInfoDbo {
         spoonacularSourceUrl = this.spoonacularSourceUrl,
         healthScore = this.healthScore,
         spoonacularScore = this.spoonacularScore,
-        analyzedInstructions = this.analyzedInstructions,
+//        analyzedInstructions = this.analyzedInstructions,
         cheap = this.cheap,
         creditsText = this.creditsText,
         cuisines = this.cuisines,
@@ -27,7 +27,6 @@ internal fun RecipeInfoDto.toRecipeInfoDBO(): RecipeInfoDbo {
         gaps = this.gaps,
         glutenFree = this.glutenFree,
         instructions = this.instructions,
-        ketogenic = this.ketogenic,
         lowFodmap = this.lowFodmap,
         occasions = this.occasions,
         sustainable = this.sustainable,
@@ -35,7 +34,6 @@ internal fun RecipeInfoDto.toRecipeInfoDBO(): RecipeInfoDbo {
         vegetarian = this.vegetarian,
         veryHealthy = this.veryHealthy,
         veryPopular = this.veryPopular,
-        whole30 = this.whole30,
         weightWatcherSmartPoints = this.weightWatcherSmartPoints,
         dishTypes = this.dishTypes,
         extendedIngredients = this.extendedIngredients.toSetOfRecipeInformationDBO(),
@@ -73,7 +71,7 @@ internal fun RecipeInfoDto.toRecipeInfo(): RecipeInfo {
         spoonacularSourceUrl = this.spoonacularSourceUrl,
         healthScore = this.healthScore,
         spoonacularScore = this.spoonacularScore,
-        analyzedInstructions = this.analyzedInstructions,
+//        analyzedInstructions = this.analyzedInstructions,
         cheap = this.cheap,
         creditsText = this.creditsText,
         cuisines = this.cuisines,
@@ -82,7 +80,6 @@ internal fun RecipeInfoDto.toRecipeInfo(): RecipeInfo {
         gaps = this.gaps,
         glutenFree = this.glutenFree,
         instructions = this.instructions,
-        ketogenic = this.ketogenic,
         lowFodmap = this.lowFodmap,
         occasions = this.occasions,
         sustainable = this.sustainable,
@@ -90,10 +87,9 @@ internal fun RecipeInfoDto.toRecipeInfo(): RecipeInfo {
         vegetarian = this.vegetarian,
         veryHealthy = this.veryHealthy,
         veryPopular = this.veryPopular,
-        whole30 = this.whole30,
         weightWatcherSmartPoints = this.weightWatcherSmartPoints,
         dishTypes = this.dishTypes,
-        extendedIngredients = this.extendedIngredients.toSetOfRecipeInformation(),
+        extendedIngredients = this.extendedIngredients.map { it.toRecipeInformation() }.toSet(),
     )
 }
 
@@ -108,7 +104,7 @@ internal fun RecipeInfoDbo.toRecipeInfo(): RecipeInfo {
         spoonacularSourceUrl = this.spoonacularSourceUrl,
         healthScore = this.healthScore,
         spoonacularScore = this.spoonacularScore,
-        analyzedInstructions = this.analyzedInstructions,
+//        analyzedInstructions = this.analyzedInstructions,
         cheap = this.cheap,
         creditsText = this.creditsText,
         cuisines = this.cuisines,
@@ -117,7 +113,6 @@ internal fun RecipeInfoDbo.toRecipeInfo(): RecipeInfo {
         gaps = this.gaps,
         glutenFree = this.glutenFree,
         instructions = this.instructions,
-        ketogenic = this.ketogenic,
         lowFodmap = this.lowFodmap,
         occasions = this.occasions,
         sustainable = this.sustainable,
@@ -125,17 +120,10 @@ internal fun RecipeInfoDbo.toRecipeInfo(): RecipeInfo {
         vegetarian = this.vegetarian,
         veryHealthy = this.veryHealthy,
         veryPopular = this.veryPopular,
-        whole30 = this.whole30,
         weightWatcherSmartPoints = this.weightWatcherSmartPoints,
         dishTypes = this.dishTypes,
-        extendedIngredients = this.extendedIngredients.toSetOfRecipeInformation(),
+        extendedIngredients = this.extendedIngredients.map { it.toRecipeInformation() }.toSet(),
     )
-}
-
-internal fun Set<IngredientsDbo>.toSetOfRecipeInformation(): Set<Ingredients> {
-    return this.map {
-        it.toRecipeInformation()
-    }.toSet()
 }
 
 internal fun IngredientsDbo.toRecipeInformation(): Ingredients {
@@ -150,12 +138,6 @@ internal fun IngredientsDbo.toRecipeInformation(): Ingredients {
         originalName = this.originalName,
         unit = this.unit
     )
-}
-
-internal fun Set<IngredientsDto>.toSetOfRecipeInformation(): Set<Ingredients> {
-    return this.map {
-        it.toRecipeInformation()
-    }.toSet()
 }
 
 internal fun IngredientsDto.toRecipeInformation(): Ingredients {

@@ -1,4 +1,4 @@
-package com.tamago.recipesmain.components
+package com.tamago.recipesmain.components.bars
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction

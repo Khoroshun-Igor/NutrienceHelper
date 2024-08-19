@@ -26,6 +26,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+        create("benchmarkRelease") {
+        }
+        create("nonMinifiedRelease") {
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -43,7 +47,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -60,10 +63,13 @@ dependencies {
     implementation(libs.kotlinx.coroutine.android)
     implementation(libs.dagger.hilt.android)
     implementation(libs.androidx.foundation.android)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.navigation.compose)
     kapt(libs.dagger.hilt.compiler)
     implementation(libs.jakarta.inject.api)
     implementation(libs.coil.compose)
-
+    kapt(libs.androidx.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(project(":recipe-data"))
     implementation(project(":recipesuikit"))

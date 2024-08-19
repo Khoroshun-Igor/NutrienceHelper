@@ -1,4 +1,4 @@
-package com.tamago.recipesmain
+package com.tamago.recipesmain.screens
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -22,15 +22,24 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tamago.recipes_uikit.R
-import com.tamago.recipesmain.components.BottomBar
-import com.tamago.recipesmain.components.DrawerContent
 import com.tamago.recipesmain.components.RecipeCard
-import com.tamago.recipesmain.components.TopBar
+import com.tamago.recipesmain.components.bars.BottomBar
+import com.tamago.recipesmain.components.bars.TopBar
+import com.tamago.recipesmain.components.drawers.DrawerContent
+import com.tamago.recipesmain.navigation.AppNavigation
+import com.tamago.recipesmain.navigation.NavigationGraph
+import com.tamago.recipesmain.viewmodels.RecipeMainViewModel
+import com.tamago.recipesmain.viewmodels.State
 
 /**
  * Created by Igor Khoroshun on 31.05.2024.
  */
 
+@Composable
+fun NutrienceHelper() {
+    val viewModel: RecipeMainViewModel = viewModel()
+    NavigationGraph(viewModel = viewModel)
+}
 @Composable
 fun RecipeMainScreen() {
     NavigationDrawer(viewModel = viewModel())
@@ -40,6 +49,7 @@ fun RecipeMainScreen() {
 internal fun RecipeMainScreen(
     viewModel: RecipeMainViewModel,
     modifier: Modifier = Modifier,
+    navigationAction: AppNavigation? = null
 ) {
     Scaffold(
         topBar = {
@@ -49,7 +59,8 @@ internal fun RecipeMainScreen(
         content = {
             RecipeStateContent(
                 viewModel = viewModel,
-                modifier = modifier.padding(it)
+                modifier = modifier.padding(it),
+                navigationAction = navigationAction
             )
         }
     )
@@ -59,11 +70,15 @@ internal fun RecipeMainScreen(
 internal fun RecipeStateContent(
     viewModel: RecipeMainViewModel,
     modifier: Modifier = Modifier,
+    navigationAction: AppNavigation?
 ) {
     val state by viewModel.state.collectAsState()
     val currentState = state
     if (currentState != State.None) {
-        RecipesContent(currentState)
+        RecipesContent(
+            currentState = currentState,
+            navigationAction = navigationAction
+        )
     } else {
         Box(
             contentAlignment = Alignment.Center,
@@ -95,22 +110,40 @@ internal fun NavigationDrawer(
 }
 
 @Composable
-private fun RecipesContent(currentState: State) {
-    if (currentState is State.Error) {
-        Box(contentAlignment = Alignment.Center) {
-            Text(text = stringResource(R.string.error_during_update))
+private fun RecipesContent(
+    currentState: State,
+    navigationAction: AppNavigation?
+) {
+    when (currentState) {
+        is State.Error -> {
+            Box(contentAlignment = Alignment.Center) {
+                Text(text = stringResource(R.string.error_during_update))
+            }
         }
-    }
-    if (currentState is State.Loading) {
-        Box(contentAlignment = Alignment.Center) {
-            CircularProgressIndicator()
+
+        is State.Loading -> {
+            Box(contentAlignment = Alignment.Center) {
+                CircularProgressIndicator()
+            }
         }
-    }
-    if (currentState.recipes != null) {
-        LazyVerticalGrid(columns = GridCells.Adaptive(minSize = 180.dp)) {
-            items(currentState.recipes) { recipe ->
-                key(recipe.id) {
-                    RecipeCard(recipe)
+
+        State.None -> {
+            Box(contentAlignment = Alignment.Center) {
+                Text(text = stringResource(R.string.no_recipes))
+            }
+        }
+
+        is State.Success -> {
+            if (currentState.recipes != null) {
+                LazyVerticalGrid(columns = GridCells.Adaptive(minSize = 180.dp)) {
+                    items(currentState.recipes) { recipe ->
+                        key(recipe.id) {
+                            RecipeCard(
+                                recipe = recipe,
+                                navigationAction = navigationAction
+                            )
+                        }
+                    }
                 }
             }
         }

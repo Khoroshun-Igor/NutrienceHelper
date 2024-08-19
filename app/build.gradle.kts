@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.baselineprofile)
 }
 
 android {
@@ -25,11 +26,27 @@ android {
 
         buildConfigField("String", "RECIPE_API_KEY", "\"c189afc125b846a7922c67b3fbcf0a55\"")
         buildConfigField("String", "RECIPE_API_BASE_URL", "\"https://api.spoonacular.com\"")
+
+        resourceConfigurations += setOf("ru", "en")
+        ndk {
+            //noinspection ChromeOsAbiSupport
+            abiFilters += setOf("armeabi-v7a", "arm64-v8a")
+        }
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = File(rootDir, "nutriencehelper.keystore")
+            keyPassword = "80|6/Ho9-oZg"
+            keyAlias = "i.khoroshun"
+            storePassword = "80|6/Ho9-oZg"
+        }
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            signingConfig = signingConfigs["release"]
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -51,8 +68,17 @@ android {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
     packaging {
+
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/okhttp3/internal/publicsuffix/NOTICE"
+            excludes += "/kotlin/**"
+            excludes += "/META-INF/androidx.*.version"
+            excludes += "/META-INF/com.google.*.version"
+            excludes += "/META-INF/kotlinx.*.version"
+            excludes += "/kotlin-tooling-metadata.json"
+            excludes += "/DebugProbesKt.bin"
+            excludes += "/META-INF/com/android/build/gradle/app-metadata.properties"
         }
     }
 }
@@ -73,10 +99,12 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.dagger.hilt.android)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.profileinstaller)
+    "baselineProfile"(project(":baselineprofile"))
     kapt(libs.dagger.hilt.compiler)
     implementation(libs.retrofit)
     implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.kotlin.serialization.json)
+    implementation(libs.jetbrains.kotlinx.serialization.json)
     implementation(libs.androidx.annotation)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.retrofit.adapters.result)
@@ -96,4 +124,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    baselineProfile(project(":baselineprofile"))
 }

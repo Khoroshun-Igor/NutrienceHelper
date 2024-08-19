@@ -14,13 +14,13 @@ import java.math.BigDecimal
 
 object BigDecimalSerializer : KSerializer<BigDecimal> {
     override val descriptor: SerialDescriptor
-        get() = PrimitiveSerialDescriptor("BigDecimal", PrimitiveKind.STRING)
+        get() = PrimitiveSerialDescriptor("BigDecimal", PrimitiveKind.DOUBLE)
 
-    override fun deserialize(decoder: Decoder): BigDecimal {
-        return decoder.decodeString().toBigDecimal()
-    }
+    override fun deserialize(decoder: Decoder): BigDecimal =
+        decoder.decodeDouble().toBigDecimal()
+
 
     override fun serialize(encoder: Encoder, value: BigDecimal) {
-        encoder.encodeString(value.toPlainString())
+        encoder.encodeDouble(value.toDouble())
     }
 }

@@ -26,7 +26,7 @@ class RecipesDataBase internal constructor(private val dataBase: RecipesRoomData
         RecipeInfoDbo::class,
         RecipeInformationExtendedIngredientsInnerDbo::class
     ],
-    version = 4
+    version = 8
 )
 @TypeConverters(Converters::class)
 internal abstract class RecipesRoomDataBase : RoomDatabase() {

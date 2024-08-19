@@ -15,5 +15,7 @@ data class RecipeInformationExtendedIngredientsInnerDto(
     val name: String,
     val original: String,
     val originalName: String,
-    val unit: String
+    val unit: String,
+    val measures: RecipeInformationExtendedIngredientsInnerMeasuresDto? = null,
+    val meta: List<String>? = null
 )

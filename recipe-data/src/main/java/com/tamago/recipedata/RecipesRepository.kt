@@ -12,6 +12,7 @@ import com.tamago.recipedata.model.Recipe
 import com.tamago.recipedata.model.RecipeInfo
 import com.tamago.spoonacularapi.SpoonacularApi
 import com.tamago.spoonacularapi.models.RecipeDto
+import com.tamago.spoonacularapi.models.RecipeInfoDto
 import com.tamago.spoonacularapi.models.ResponseDto
 import jakarta.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -97,8 +98,15 @@ class RecipesRepository @Inject constructor(
 
     fun getRecipeByIdFromServer(id: Int): Flow<RequestResult<RecipeInfo>> {
         val apiRequest = flow { emit(api.searchRecipeById(id)) }
+            .onEach { result ->
+                if (result.isFailure) {
+                    logger.e(LOGTAG, "Error getting from server = ${result.exceptionOrNull()}")
+                }
+            }
             .map { it.toRequestResult() }
-        return apiRequest.map { result ->
+
+        val start = flowOf<RequestResult<RecipeInfoDto>>(RequestResult.InProgress())
+        return merge(apiRequest, start).map { result ->
             result.map {
                 it.toRecipeInfo()
             }

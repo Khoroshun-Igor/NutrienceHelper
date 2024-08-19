@@ -20,4 +20,14 @@
     <string name="account">Account</string>
     <string name="no_recipes">No recipes</string>
     <string name="error_during_update">Error during update</string>
+    <string name="cheap">cheap</string>
+    <string name="dairy_free">dairy free</string>
+    <string name="gluten_free">gluten free</string>
+    <string name="low_fodmap">low fodmap</string>
+    <string name="sustainable">sustainable</string>
+    <string name="vegan">vegan</string>
+    <string name="vegetarian">vegetarian</string>
+    <string name="very_healthy">very healthy</string>
+    <string name="very_popular">very popular</string>
+    <string name="recipe_image">image</string>
 </resources>

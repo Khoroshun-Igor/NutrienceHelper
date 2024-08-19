@@ -1,14 +1,16 @@
-package com.tamago.recipesmain.components
+package com.tamago.recipesmain.components.bars
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
@@ -17,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.tamago.recipes_uikit.R
+import com.tamago.recipesuikit.NutrienceHelperTheme
 
 /**
  * Created by Igor Khoroshun on 10.06.2024.
@@ -38,24 +41,33 @@ internal fun TopBar(
         },
         navigationIcon = {
             Icon(
-                imageVector = Icons.AutoMirrored.Filled.List,
-                contentDescription = stringResource(R.string.menu)
+                imageVector = Icons.Default.Menu,
+                contentDescription = stringResource(R.string.menu),
             )
         },
         actions = {
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
                     imageVector = Icons.Default.Refresh,
-                    contentDescription = stringResource(R.string.refresh)
+                    contentDescription = stringResource(R.string.refresh),
                 )
             }
         },
-        scrollBehavior = scrollBehavior
+        colors = TopAppBarColors(
+            containerColor = MaterialTheme.colorScheme.surface,
+            scrolledContainerColor = MaterialTheme.colorScheme.surface,
+            navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
+            titleContentColor = MaterialTheme.colorScheme.onSurface,
+            actionIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant
+        ),
+        scrollBehavior = scrollBehavior,
     )
 }
 
 @Preview
 @Composable
 internal fun TopBarPreview() {
-    TopBar()
+    NutrienceHelperTheme {
+        TopBar()
+    }
 }
