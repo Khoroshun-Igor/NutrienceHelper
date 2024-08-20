@@ -11,7 +11,6 @@ plugins {
     alias(libs.plugins.jetbrainsCompose) apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.dagger.hilt.android) apply false
-    alias(libs.plugins.kapt) apply false
     alias(libs.plugins.detect) apply false
     alias(libs.plugins.android.test) apply false
     alias(libs.plugins.baselineprofile) apply false
