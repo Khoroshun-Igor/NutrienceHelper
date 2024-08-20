@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.baselineprofile)
 }
 
@@ -101,7 +101,7 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.profileinstaller)
     "baselineProfile"(project(":baselineprofile"))
-    kapt(libs.dagger.hilt.compiler)
+    ksp(libs.dagger.hilt.compiler)
     implementation(libs.retrofit)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.jetbrains.kotlinx.serialization.json)
