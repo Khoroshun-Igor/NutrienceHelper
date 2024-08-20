@@ -4,7 +4,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -13,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.tamago.recipes_uikit.R
 import com.tamago.recipesmain.components.images.RecipeImageScreen
 import com.tamago.recipesmain.model.RecipeInfoUI
@@ -69,13 +73,23 @@ fun RecipeInfoContent(
 ) {
     Column {
         Box(modifier = modifier) {
-            RecipeImageScreen(recipeImage = recipeInfoUI.image)
+            RecipeImageScreen(
+                recipeImage = recipeInfoUI.image,
+                modifier = modifier.fillMaxWidth()
+            )
             Text(text = recipeInfoUI.readyInMinutes.toString())
             Text(text = recipeInfoUI.healthScore.toString())
         }
         TagsList(recipeInfoUI)
-        Text(text = recipeInfoUI.title)
-        Text(text = recipeInfoUI.instructions)
+        Text(
+            text = recipeInfoUI.title,
+            style = MaterialTheme.typography.labelLarge
+        )
+        HorizontalDivider(thickness = 1.dp)
+        Text(
+            text = recipeInfoUI.instructions,
+            style = MaterialTheme.typography.labelSmall
+        )
     }
 }
 
