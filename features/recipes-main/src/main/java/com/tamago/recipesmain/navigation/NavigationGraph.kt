@@ -16,6 +16,7 @@ import com.tamago.recipesmain.viewmodels.RecipeMainViewModel
  * Created by Igor Khoroshun on 15.08.2024.
  */
 
+@Suppress("UnusedParameter")
 @Composable
 internal fun NavigationGraph(
     viewModel: RecipeMainViewModel,

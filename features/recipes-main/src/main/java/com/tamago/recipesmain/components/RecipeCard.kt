@@ -47,8 +47,7 @@ internal fun RecipeCard(
 
     ElevatedCard(
         onClick = { navigationAction?.navigateToDetails(recipe.id) },
-        modifier = modifier
-            .width(dimensionResource(R.dimen.recipe_card_width))
+        modifier = modifier.width(dimensionResource(R.dimen.recipe_card_width))
             .padding(dimensionResource(R.dimen.min_padding))
     ) {
         Row(modifier = modifier) {
@@ -71,8 +70,7 @@ internal fun RecipeCard(
         }
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
-                .fillMaxWidth()
+            modifier = modifier.fillMaxWidth()
                 .padding(8.dp)
         ) {
             Column(

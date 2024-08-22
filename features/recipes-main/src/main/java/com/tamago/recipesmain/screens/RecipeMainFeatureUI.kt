@@ -40,6 +40,7 @@ fun NutrienceHelper() {
     val viewModel: RecipeMainViewModel = viewModel()
     NavigationGraph(viewModel = viewModel)
 }
+
 @Composable
 fun RecipeMainScreen() {
     NavigationDrawer(viewModel = viewModel())

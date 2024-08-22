@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
  */
 
 @Serializable
-data class RecipeInformationExtendedIngredientsInnerMeasuresMetricDto (
+data class RecipeInformationExtendedIngredientsInnerMeasuresMetricDto(
     @Serializable(with = BigDecimalSerializer::class)
     val amount: java.math.BigDecimal,
     val unitLong: String,

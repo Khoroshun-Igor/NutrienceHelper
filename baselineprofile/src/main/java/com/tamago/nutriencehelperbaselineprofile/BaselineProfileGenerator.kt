@@ -38,6 +38,7 @@ class BaselineProfileGenerator {
     @get:Rule
     val rule = BaselineProfileRule()
 
+    @Suppress("TooGenericExceptionThrown")
     @Test
     fun generate() {
         // The application id for the running build variant is read from the instrumentation arguments.

@@ -27,6 +27,7 @@ import com.tamago.recipesmain.viewmodels.RecipeInformationViewModel
  * Created by Igor Khoroshun on 15.08.2024.
  */
 
+@Suppress("UnusedParameter")
 @Composable
 internal fun RecipeInfoUI(
     viewModel: RecipeInformationViewModel,

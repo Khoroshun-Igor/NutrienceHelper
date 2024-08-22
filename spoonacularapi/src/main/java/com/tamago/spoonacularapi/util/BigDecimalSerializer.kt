@@ -19,7 +19,6 @@ object BigDecimalSerializer : KSerializer<BigDecimal> {
     override fun deserialize(decoder: Decoder): BigDecimal =
         decoder.decodeDouble().toBigDecimal()
 
-
     override fun serialize(encoder: Encoder, value: BigDecimal) {
         encoder.encodeDouble(value.toDouble())
     }

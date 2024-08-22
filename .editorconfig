@@ -58,7 +58,7 @@ ij_json_spaces_within_braces = false
 ij_json_spaces_within_brackets = false
 ij_json_wrap_long_lines = false
 
-[{*.kt,*.kts}]
+[*{.kt,.kts}]
 insert_final_newline = true
 ktlint_code_style = ktlint_official
 ktlint_ignore_back_ticked_identifier = true

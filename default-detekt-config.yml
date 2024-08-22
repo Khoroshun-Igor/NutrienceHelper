@@ -356,7 +356,7 @@ naming:
     active: false
   ObjectPropertyNaming:
     active: true
-    constantPattern: '[A-Z][A-Za-z0-9]*'
+    constantPattern: '(_)?[A-Za-z][_A-Za-z0-9]*'
     propertyPattern: '[A-Za-z][_A-Za-z0-9]*'
     privatePropertyPattern: '(_)?[A-Za-z][_A-Za-z0-9]*'
   PackageNaming:

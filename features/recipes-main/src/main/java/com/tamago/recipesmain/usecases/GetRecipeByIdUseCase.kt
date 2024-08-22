@@ -4,12 +4,12 @@ import com.tamago.recipedata.RecipesRepository
 import com.tamago.recipedata.RequestResult
 import com.tamago.recipedata.map
 import com.tamago.recipedata.model.RecipeInfo
-import com.tamago.recipedata.model.RecipeInformationExtendedIngredientsInner as RecipeInformation
 import com.tamago.recipesmain.model.RecipeInfoUI
-import com.tamago.recipesmain.model.RecipeInformationExtendedIngredientsInnerUI as RecipeInformationUI
+import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
+import com.tamago.recipedata.model.RecipeInformationExtendedIngredientsInner as RecipeInformation
+import com.tamago.recipesmain.model.RecipeInformationExtendedIngredientsInnerUI as RecipeInformationUI
 
 /**
  * Created by Igor Khoroshun on 01.08.2024.
@@ -56,13 +56,13 @@ class GetRecipeByIdUseCase @Inject constructor(
             extendedIngredients = this.extendedIngredients.toSetOfRecipeInformationUI(),
         )
     }
-    fun Set<RecipeInformation>.toSetOfRecipeInformationUI(): Set<RecipeInformationUI> {
+    private fun Set<RecipeInformation>.toSetOfRecipeInformationUI(): Set<RecipeInformationUI> {
         return this.map {
             it.toRecipeInformationUI()
         }.toSet()
     }
 
-    fun RecipeInformation.toRecipeInformationUI(): RecipeInformationUI {
+    private fun RecipeInformation.toRecipeInformationUI(): RecipeInformationUI {
         return RecipeInformationUI(
             aisle = this.aisle,
             amount = this.amount,
