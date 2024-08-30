@@ -1,3 +1,5 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
     repositories {
         google {
@@ -26,12 +28,15 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Nutrience Helper"
+rootProject.name = "NutrienceHelper"
 include(":app")
-include(":spoonacularapi")
-include(":database")
 include(":features:recipes-main")
-include(":recipe-data")
-include(":recipes-common")
-include(":recipesuikit")
 include(":baselineprofile")
+include(":core")
+include(":core:database")
+include(":core:spoonacularapi")
+include(":core:data")
+include(":core:common")
+include(":core:uikit")
+include(":features:recipes-main:ui")
+include(":features:recipes-main:domain")

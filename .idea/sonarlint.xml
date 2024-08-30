@@ -6,8 +6,11 @@
         <entry key="Nutrience_Helper.features.recipesMain" value="Nutrience_Helper.features.recipes-main" />
         <entry key="Nutrience_Helper.recipeData" value="Nutrience_Helper.recipe-data" />
         <entry key="Nutrience_Helper.recipesUikit" value="Nutrience_Helper.recipes-uikit" />
-        <entry key="Nutrience_Helper.recipesuikit" value="Nutrience_Helper.recipes-uikit" />
+        <entry key="common" value="Nutrience_Helper.recipes-common" />
+        <entry key="data" value="Nutrience_Helper.recipe-data" />
+        <entry key="database" value="Nutrience_Helper.database" />
         <entry key="recipesCommon" value="Nutrience_Helper.mylibrary" />
+        <entry key="uikit" value="Nutrience_Helper.recipes-uikit" />
       </map>
     </option>
   </component>

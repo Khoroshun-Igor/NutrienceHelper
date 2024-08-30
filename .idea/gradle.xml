@@ -11,13 +11,16 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/baselineprofile" />
-            <option value="$PROJECT_DIR$/database" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/common" />
+            <option value="$PROJECT_DIR$/core/data" />
+            <option value="$PROJECT_DIR$/core/database" />
+            <option value="$PROJECT_DIR$/core/spoonacularapi" />
+            <option value="$PROJECT_DIR$/core/uikit" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/recipes-main" />
-            <option value="$PROJECT_DIR$/recipe-data" />
-            <option value="$PROJECT_DIR$/recipes-common" />
-            <option value="$PROJECT_DIR$/recipesuikit" />
-            <option value="$PROJECT_DIR$/spoonacularapi" />
+            <option value="$PROJECT_DIR$/features/recipes-main/domain" />
+            <option value="$PROJECT_DIR$/features/recipes-main/ui" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
