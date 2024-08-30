@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.tamago.recipesuikit.NutrienceHelperTheme
-import com.tamago.ui.screens.NutrienceHelper
+import com.tamago.ui.NutrienceHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

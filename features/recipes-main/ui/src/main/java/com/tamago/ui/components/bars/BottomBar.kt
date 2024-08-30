@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.tamago.recipesuikit.NutrienceHelperTheme
 
 /**
  * Created by Igor Khoroshun on 10.06.2024.
@@ -52,5 +53,7 @@ internal fun BottomBar(
 @Preview
 @Composable
 internal fun BottomBarPreview() {
-    BottomBar()
+    NutrienceHelperTheme {
+        BottomBar()
+    }
 }

@@ -25,7 +25,7 @@ import com.tamago.recipesuikit.NutrienceHelperTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchBar(
+fun RecipesSearchBar(
     onSearchInputChange: (String) -> Unit,
     onClicked: () -> Unit,
     onSearch: (String) -> Unit,
@@ -65,10 +65,10 @@ fun SearchBar(
 
 @Preview
 @Composable
-fun SearchBarPreview() {
+fun RecipeSearchBarPreview() {
     NutrienceHelperTheme {
-        SearchBar(
-            onSearchInputChange = {},
+        RecipesSearchBar(
+            onSearchInputChange = { TODO() },
             onClicked = {},
             onSearch = TODO(),
             query = "pizza"
