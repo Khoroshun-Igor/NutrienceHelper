@@ -16,7 +16,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
-import javax.inject.Provider
 
 /**
  * Created by Igor Khoroshun on 31.05.2024.
@@ -24,19 +23,21 @@ import javax.inject.Provider
 
 @HiltViewModel
 class RecipeMainViewModel @Inject constructor(
-    getAllRecipesUseCase: Provider<GetAllRecipesUseCase>,
+    private val getAllRecipesUseCase: GetAllRecipesUseCase,
 ) : ViewModel() {
-    var query: String? by mutableStateOf(null)
-    val state: StateFlow<State> = getAllRecipesUseCase.get().invoke(query)
+    var query: String by mutableStateOf("")
+    var state: StateFlow<State> = getAllRecipesUseCase.invoke(query)
         .map { it.toState() }
         .stateIn(viewModelScope, SharingStarted.Lazily, State.None)
 
-    fun forceToUpdate() {
-        TODO()
+    fun findRecipes() {
+        state = getAllRecipesUseCase.findRecipesByQuery(query)
+            .map { it.toState() }
+            .stateIn(viewModelScope, SharingStarted.Lazily, State.None)
     }
 }
 
-private fun RequestResult<List<RecipeUI>>.toState(): State {
+fun RequestResult<List<RecipeUI>>.toState(): State {
     return when (this) {
         is RequestResult.Error -> State.Error()
         is RequestResult.InProgress -> State.Loading(data)

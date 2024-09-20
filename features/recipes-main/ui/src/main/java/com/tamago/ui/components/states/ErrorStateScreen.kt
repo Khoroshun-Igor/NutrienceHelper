@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.stringResource
 import com.tamago.recipes_uikit.R
-import com.tamago.ui.screens.RecipesListScreen
 import com.tamago.ui.viewmodels.State
 
 /**

@@ -38,7 +38,7 @@ public class RecipesRepository @Inject constructor(
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     public fun getAll(
-        query: String?,
+        query: String,
         mergeStrategy: MergeStrategy<RequestResult<List<Recipe>>> = DefaultRequestResponseMergeStrategy(),
     ): Flow<RequestResult<List<Recipe>>> {
         val cachedRecipes = getAllFromDatabase()
@@ -57,7 +57,7 @@ public class RecipesRepository @Inject constructor(
             }
     }
 
-    public fun getAllFromDatabase(): Flow<RequestResult<List<Recipe>>> {
+    private fun getAllFromDatabase(): Flow<RequestResult<List<Recipe>>> {
         val dbRequest = dataBase.recipeDao::getAll.asFlow()
             .map { RequestResult.Success(it) }
             .catch {

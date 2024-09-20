@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.tamago.recipesuikit.NutrienceHelperTheme
+import com.tamago.ui.navigation.AppNavigation
 
 /**
  * Created by Igor Khoroshun on 10.06.2024.
@@ -20,7 +21,8 @@ import com.tamago.recipesuikit.NutrienceHelperTheme
 
 @Composable
 internal fun BottomBar(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigationAction: AppNavigation? = null
 ) {
     BottomAppBar(
         actions = {
@@ -31,7 +33,7 @@ internal fun BottomBar(
                     modifier = modifier
                 )
             }
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { navigationAction?.navigateToSearch() }) {
                 Icon(
                     imageVector = Icons.Default.Search,
                     contentDescription = "search"

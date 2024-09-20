@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
+    debugImplementation(libs.androidx.ui.tooling)
     ksp(libs.dagger.hilt.compiler)
     ksp(libs.androidx.hilt.compiler)
     implementation(libs.coil.compose)

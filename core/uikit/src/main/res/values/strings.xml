@@ -33,5 +33,6 @@
     <string name="recipe_image">image</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="repeate_password">Repeat password</string>
     <string name="name">Name</string>
 </resources>

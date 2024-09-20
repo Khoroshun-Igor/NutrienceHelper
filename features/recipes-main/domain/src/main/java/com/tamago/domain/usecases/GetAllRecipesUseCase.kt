@@ -12,11 +12,19 @@ import com.tamago.recipedata.model.Recipe as DataRecipe
 /**
  * Created by Igor Khoroshun on 04.06.2024.
  */
+
 class GetAllRecipesUseCase @Inject constructor(
     private val repository: RecipesRepository,
 ) {
-    operator fun invoke(query: String?): Flow<RequestResult<List<RecipeUI>>> {
+    operator fun invoke(query: String): Flow<RequestResult<List<RecipeUI>>> {
         return repository.getAll(query)
+            .map { requestResult ->
+                requestResult.map { recipes -> recipes.map { it.toUiRecipe() } }
+            }
+    }
+
+    fun findRecipesByQuery(query: String): Flow<RequestResult<List<RecipeUI>>> {
+        return repository.getAllFromServer(query)
             .map { requestResult ->
                 requestResult.map { recipes -> recipes.map { it.toUiRecipe() } }
             }

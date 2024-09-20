@@ -19,7 +19,7 @@ interface SpoonacularApi {
      */
     @GET("/recipes/complexSearch")
     suspend fun searchRecipe(
-        @Query("query") query: String? = null,
+        @Query("query") query: String?,
         @Query("number") @IntRange(from = 1, to = 100) number: Int = 100,
         @Query("sort") sort: Sort? = null,
         @Query("sortDirection") sortDirection: SortDirection? = null,

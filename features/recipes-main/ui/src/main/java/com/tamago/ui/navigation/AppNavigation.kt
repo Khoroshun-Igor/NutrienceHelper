@@ -26,4 +26,11 @@ class AppNavigation(private val navController: NavHostController) {
             restoreState = true
         }
     }
+
+    fun navigateToSearch() {
+        navController.navigate(Screens.ROUTE_SEARCH) {
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
 }

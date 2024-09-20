@@ -8,6 +8,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.tamago.ui.screens.RecipeInfoUI
+import com.tamago.ui.screens.RecipeMainScreen
+import com.tamago.ui.screens.RecipeSearchScreen
 import com.tamago.ui.viewmodels.RecipeMainViewModel
 
 /**
@@ -27,7 +30,7 @@ fun NavigationGraph(
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable(route = startDestination) {
-            com.tamago.ui.screens.RecipeMainScreen(
+            RecipeMainScreen(
                 viewModel = hiltViewModel(),
                 navigationAction = navigationAction
             )
@@ -41,9 +44,14 @@ fun NavigationGraph(
                 }
             )
         ) { entry ->
-            com.tamago.ui.screens.RecipeInfoUI(
+            RecipeInfoUI(
                 viewModel = hiltViewModel(),
                 recipeId = entry.arguments!!.getInt("recipeId")
+            )
+        }
+        composable(route = Screens.ROUTE_SEARCH) {
+            RecipeSearchScreen(
+                viewModel = hiltViewModel()
             )
         }
     }

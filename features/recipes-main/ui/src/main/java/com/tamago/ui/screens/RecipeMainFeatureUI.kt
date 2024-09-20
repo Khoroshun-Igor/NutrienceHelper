@@ -26,7 +26,7 @@ fun RecipeMainScreen(
         topBar = {
             TopBar()
         },
-        bottomBar = { BottomBar() },
+        bottomBar = { BottomBar(navigationAction = navigationAction) },
         content = {
             RecipeStateContent(
                 viewModel = viewModel,
@@ -51,5 +51,3 @@ internal fun RecipeStateContent(
         navigationAction = navigationAction
     )
 }
-
-

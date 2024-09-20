@@ -8,9 +8,11 @@ sealed class Screens(
 ) {
     data object Main : Screens(ROUTE_MAIN)
     data object Details : Screens(ROUTE_DETAILS)
+    data object Search : Screens(ROUTE_SEARCH)
 
     companion object {
         const val ROUTE_MAIN = "main"
         const val ROUTE_DETAILS = "details"
+        const val ROUTE_SEARCH = "search"
     }
 }
