@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -53,10 +54,18 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(projects.core.firebase)
+    implementation(libs.firebase.ui.storage)
+    implementation(libs.gms.play.services.auth)
+    implementation(libs.androidx.paging.common.android)
     debugImplementation(libs.androidx.ui.tooling)
     ksp(libs.dagger.hilt.compiler)
     ksp(libs.androidx.hilt.compiler)
     implementation(libs.coil.compose)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage.ktx)
     implementation(projects.features.recipesMain.domain)
     implementation(projects.core.data)
     implementation(projects.core.uikit)

@@ -14,6 +14,7 @@ plugins {
     alias(libs.plugins.detect) apply false
     alias(libs.plugins.android.test) apply false
     alias(libs.plugins.baselineprofile) apply false
+    alias(libs.plugins.google.gms.google.services) apply false
 }
 
 allprojects.onEach { project ->

@@ -25,6 +25,7 @@ import javax.inject.Inject
 class RecipeMainViewModel @Inject constructor(
     private val getAllRecipesUseCase: GetAllRecipesUseCase,
 ) : ViewModel() {
+
     var query: String by mutableStateOf("")
     var state: StateFlow<State> = getAllRecipesUseCase.invoke(query)
         .map { it.toState() }
@@ -35,6 +36,10 @@ class RecipeMainViewModel @Inject constructor(
             .map { it.toState() }
             .stateIn(viewModelScope, SharingStarted.Lazily, State.None)
     }
+
+//    fun onSearchUpdate(query: String?) {
+//        findRecipes(query = query ?: "")
+//    }
 }
 
 fun RequestResult<List<RecipeUI>>.toState(): State {

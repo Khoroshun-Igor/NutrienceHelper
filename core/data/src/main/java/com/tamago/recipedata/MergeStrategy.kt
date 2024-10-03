@@ -6,7 +6,7 @@ package com.tamago.recipedata
  * Created by Igor Khoroshun on 02.06.2024.
  */
 public interface MergeStrategy<E> {
-    public fun merge(right: E, left: E,): E
+    public fun merge(cache: E, server: E,): E
 }
 
 internal class DefaultRequestResponseMergeStrategy<T : Any> : MergeStrategy<RequestResult<T>> {

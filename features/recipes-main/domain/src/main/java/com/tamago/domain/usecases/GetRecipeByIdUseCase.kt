@@ -1,21 +1,22 @@
 package com.tamago.domain.usecases
 
 import com.tamago.domain.model.RecipeInfoUI
-import com.tamago.recipedata.RecipesRepository
+import com.tamago.recipedata.RecipesRepositoryImpl
 import com.tamago.recipedata.RequestResult
 import com.tamago.recipedata.map
 import com.tamago.recipedata.model.RecipeInfo
-import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 import com.tamago.domain.model.RecipeInformationExtendedIngredientsInnerUI as RecipeInformationUI
 import com.tamago.recipedata.model.RecipeInformationExtendedIngredientsInner as RecipeInformation
 
 /**
- * Created by Igor Khoroshun on 01.08.2024.
+ * Created by Igor Khoroshun on 29.09.2024.
  */
+
 class GetRecipeByIdUseCase @Inject constructor(
-    private val repository: RecipesRepository
+    private val repository: RecipesRepositoryImpl
 ) {
     operator fun invoke(id: Int): Flow<RequestResult<RecipeInfoUI>> {
         return repository.getRecipeByIdFromServer(id)

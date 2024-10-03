@@ -63,6 +63,8 @@ fun RecipeInfoUI(
                     RecipeInfoContent(recipeState.recipe!!)
                 }
             }
+
+            else -> {}
         }
     }
 }

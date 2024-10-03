@@ -11,6 +11,7 @@ import androidx.navigation.navArgument
 import com.tamago.ui.screens.RecipeInfoUI
 import com.tamago.ui.screens.RecipeMainScreen
 import com.tamago.ui.screens.RecipeSearchScreen
+import com.tamago.ui.screens.signup.SignUpScreen
 import com.tamago.ui.viewmodels.RecipeMainViewModel
 
 /**
@@ -53,6 +54,9 @@ fun NavigationGraph(
             RecipeSearchScreen(
                 viewModel = hiltViewModel()
             )
+        }
+        composable(route = Screens.SIGN_UP) {
+            SignUpScreen()
         }
     }
 }

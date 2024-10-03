@@ -1,12 +1,9 @@
-package com.tamago.nutriencehelper
+package com.tamago.nutriencehelper.di
 
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
-import com.tamago.common.AppDispatchers
-import com.tamago.common.Logger
-import com.tamago.common.androidLogcatLogger
-import com.tamago.recipe.database.RecipesDataBase
+import com.tamago.nutriencehelper.BuildConfig
 import com.tamago.spoonacularapi.SpoonacularApi
 import dagger.Module
 import dagger.Provides
@@ -20,13 +17,12 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 
 /**
- * Created by Igor Khoroshun on 06.06.2024.
+ * Created by Igor Khoroshun on 23.09.2024.
  */
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
-
+object NetworkModule {
     @Provides
     @Named("OkHttp")
     @Suppress("UnusedParameter")
@@ -61,15 +57,4 @@ object AppModule {
     fun providesSpoonacularService(@Named("Retrofit") retrofit: Retrofit): SpoonacularApi {
         return retrofit.create(SpoonacularApi::class.java)
     }
-
-    @Provides
-    fun provideLogger(): Logger = androidLogcatLogger()
-
-    @Provides
-    fun provideDatabase(
-        @ApplicationContext context: Context
-    ): RecipesDataBase = RecipesDataBase(context)
-
-    @Provides
-    fun provideAppCoroutineDispatchers(): AppDispatchers = AppDispatchers()
 }

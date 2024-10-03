@@ -31,7 +31,7 @@ import kotlinx.coroutines.flow.onEach
  * Created by Igor Khoroshun on 31.05.2024.
  */
 
-public class RecipesRepository @Inject constructor(
+public class RecipesRepositoryImpl @Inject constructor(
     private val dataBase: RecipesDataBase,
     private val api: SpoonacularApi,
     private val logger: Logger

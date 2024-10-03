@@ -7,7 +7,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.tamago.ui.components.bars.RecipesSearchBar
-import com.tamago.ui.components.states.RecipesStateContent
 import com.tamago.ui.navigation.AppNavigation
 import com.tamago.ui.viewmodels.RecipeMainViewModel
 
@@ -39,8 +38,8 @@ internal fun RecipeSearchScreen(
             )
         },
         content = {
-            RecipesStateContent(
-                currentState = currentState,
+            RecipeStateContent(
+                viewModel = viewModel,
                 navigationAction = navigationAction,
                 modifier = modifier.padding(it)
             )

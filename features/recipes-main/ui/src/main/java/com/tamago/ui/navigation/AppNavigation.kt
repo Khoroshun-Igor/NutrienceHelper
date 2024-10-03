@@ -33,4 +33,11 @@ class AppNavigation(private val navController: NavHostController) {
             restoreState = true
         }
     }
+
+    fun navigateToSignUp() {
+        navController.navigate(Screens.SIGN_UP) {
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
 }

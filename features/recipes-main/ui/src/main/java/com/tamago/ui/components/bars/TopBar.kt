@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.tamago.recipes_uikit.R
 import com.tamago.recipesuikit.NutrienceHelperTheme
+import kotlinx.coroutines.coroutineScope
 
 /**
  * Created by Igor Khoroshun on 10.06.2024.
@@ -28,7 +29,8 @@ import com.tamago.recipesuikit.NutrienceHelperTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun TopBar(
-    modifier: Modifier = Modifier
+    navigationIcon: @Composable () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     TopAppBar(
@@ -39,14 +41,9 @@ internal fun TopBar(
                 textAlign = TextAlign.Center
             )
         },
-        navigationIcon = {
-            Icon(
-                imageVector = Icons.Default.Menu,
-                contentDescription = stringResource(R.string.menu),
-            )
-        },
+        navigationIcon = navigationIcon,
         actions = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = {/*TODO*/ }) {
                 Icon(
                     imageVector = Icons.Default.Refresh,
                     contentDescription = stringResource(R.string.refresh),
@@ -64,10 +61,18 @@ internal fun TopBar(
     )
 }
 
-@Preview
-@Composable
-internal fun TopBarPreview() {
-    NutrienceHelperTheme {
-        TopBar()
-    }
-}
+//@Preview
+//@Composable
+//internal fun TopBarPreview() {
+//    NutrienceHelperTheme {
+//        TopBar(
+//            onClick = { /*TODO*/ },
+//            navigationIcon = {
+//                IconButton(onClick = {
+//                    coroutineScope.launch { drawerState.open() }
+//                }
+//                )
+//            }
+//        )
+//    }
+//}

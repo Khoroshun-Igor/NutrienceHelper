@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.baselineprofile)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -94,6 +95,10 @@ dependencies {
 
     implementation(libs.dagger.hilt.android)
     implementation(libs.androidx.profileinstaller)
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.firebase.storage.ktx)
+    implementation(libs.firebase.auth)
     ksp(libs.dagger.hilt.compiler)
 
     implementation(projects.core.data)
@@ -102,6 +107,7 @@ dependencies {
     implementation(projects.core.database)
     implementation(projects.core.common)
     implementation(projects.core.uikit)
+    implementation(projects.core.firebase)
     implementation(projects.features.recipesMain.ui)
 
     baselineProfile(projects.baselineprofile)
