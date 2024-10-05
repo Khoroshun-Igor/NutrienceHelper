@@ -4,6 +4,7 @@ import com.tamago.firebase.domain.repository.AuthRepository
 import com.tamago.firebase.util.Response
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import java.io.IOException
 
 /**
  * Created by Igor Khoroshun on 30.09.2024.
@@ -17,7 +18,7 @@ class SignOutUseCase(
                 emit(Response.Loading)
                 val result = authRepository.signOut()
                 emit(Response.Success(result))
-            } catch (e: Exception) {
+            } catch (e: IOException) {
                 emit(Response.Error(e))
             }
         }

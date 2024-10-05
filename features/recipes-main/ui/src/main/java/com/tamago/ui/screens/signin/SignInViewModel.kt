@@ -1,4 +1,4 @@
-package com.tamago.ui.viewmodels
+package com.tamago.ui.screens.signin
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

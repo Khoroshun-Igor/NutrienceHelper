@@ -7,7 +7,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.tamago.ui.navigation.AppNavigation
-import com.tamago.ui.viewmodels.SignInViewModel
 
 /**
  * Created by Igor Khoroshun on 23.09.2024.
@@ -19,11 +18,9 @@ fun SignInScreen(
     navigationAction: AppNavigation? = null,
     modifier: Modifier = Modifier,
 ) {
-
     val signInViewModel: SignInViewModel = hiltViewModel()
     val context = LocalContext.current
     val signInState = signInViewModel.signInState
-
 
     SignInContent(
         isLoading = signInState.isLoading,

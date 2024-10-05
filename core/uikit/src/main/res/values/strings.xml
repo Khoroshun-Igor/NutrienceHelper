@@ -36,11 +36,12 @@
     <string name="recipe_image">image</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="repeate_password">Repeat password</string>
+    <string name="repeat_password">Repeat password</string>
     <string name="name">Name</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="or_log_in_with">Or log in with</string>
     <string name="have_no_account_yet">Have no account yet?</string>
-    <string name="login_via_google">Log In via Google</string>
+    <string name="login_with_google">LogIn with Google</string>
     <string name="already_registered">Already registered?</string>
+    <string name="password_visibility">Password visibility.</string>
 </resources>

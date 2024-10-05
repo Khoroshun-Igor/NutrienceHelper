@@ -1,5 +1,7 @@
 package com.tamago.ui.components.textfields
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -32,29 +34,67 @@ import com.tamago.recipesuikit.NutrienceHelperTheme
  */
 
 @Composable
+fun NameTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    imeAction: ImeAction = ImeAction.Next,
+) {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        modifier = modifier
+            .fillMaxWidth()
+    ) {
+        OutlinedTextField(
+            value = value,
+            onValueChange = { onValueChange(it) },
+            label = { Text(stringResource(R.string.name)) },
+            placeholder = { Text(stringResource(R.string.name)) },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.AccountCircle,
+                    contentDescription = stringResource(R.string.name)
+                )
+            },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Text,
+                imeAction = imeAction
+            ),
+            modifier = modifier.fillMaxWidth(),
+        )
+    }
+}
+
+@Composable
 fun EmailTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
+    imeAction: ImeAction = ImeAction.Next,
 ) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = { onValueChange(it) },
-        label = { Text(stringResource(R.string.email)) },
-        placeholder = { stringResource(R.string.email) },
-        leadingIcon = {
-            Icon(
-                imageVector = Icons.Default.Email,
-                contentDescription = stringResource(R.string.email)
-            )
-        },
-        keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Email,
-            imeAction = ImeAction.Next
-        ),
+    Row(
+        horizontalArrangement = Arrangement.Center,
         modifier = modifier
             .fillMaxWidth()
-    )
+    ) {
+        OutlinedTextField(
+            value = value,
+            onValueChange = { onValueChange(it) },
+            label = { Text(stringResource(R.string.email)) },
+            placeholder = { Text(stringResource(R.string.email)) },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Email,
+                    contentDescription = stringResource(R.string.email)
+                )
+            },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email,
+                imeAction = imeAction
+            ),
+            modifier = modifier.fillMaxWidth(),
+        )
+    }
 }
 
 @Composable
@@ -62,7 +102,9 @@ fun PasswordTextField(
     value: String,
     onValueChange: (String) -> Unit,
     onDoneClickable: () -> Unit,
+    label: String = stringResource(R.string.password),
     modifier: Modifier = Modifier,
+    imeAction: ImeAction = ImeAction.Done,
 ) {
     var passwordVisibility by remember { mutableStateOf(false) }
     val icon = if (passwordVisibility) {
@@ -70,117 +112,46 @@ fun PasswordTextField(
     } else {
         painterResource(R.drawable.baseline_visibility_off_24)
     }
-    OutlinedTextField(
-        value = value,
-        onValueChange = { onValueChange(it) },
-        label = { Text(stringResource(R.string.password)) },
-        placeholder = { Text(stringResource(R.string.password)) },
-        singleLine = true,
-        leadingIcon = {
-            Icon(
-                imageVector = Icons.Default.Lock,
-                contentDescription = stringResource(R.string.password)
-            )
-        },
-        trailingIcon = {
-            IconButton(
-                onClick = { passwordVisibility = !passwordVisibility }
-            ) {
-                Icon(
-                    painter = icon,
-                    contentDescription = stringResource(R.string.password)
-                )
-            }
-        },
-        visualTransformation = if (passwordVisibility) {
-            VisualTransformation.None
-        } else {
-            PasswordVisualTransformation()
-        },
-        keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Password,
-            imeAction = ImeAction.Done
-        ),
-        keyboardActions = KeyboardActions(onDone = { onDoneClickable() }),
+    Row(
+        horizontalArrangement = Arrangement.Center,
         modifier = modifier
             .fillMaxWidth()
-    )
-}
-
-@Composable
-fun RepeatPasswordTextField(
-    value: String,
-    onValueChange: (String) -> Unit,
-    onDoneClickable: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    var passwordVisibility by remember { mutableStateOf(false) }
-    val icon = if (passwordVisibility) {
-        painterResource(R.drawable.baseline_visibility_24)
-    } else {
-        painterResource(R.drawable.baseline_visibility_off_24)
+    ) {
+        OutlinedTextField(
+            value = value,
+            onValueChange = { onValueChange(it) },
+            label = { Text(label) },
+            placeholder = { Text(label) },
+            singleLine = true,
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Lock,
+                    contentDescription = label
+                )
+            },
+            trailingIcon = {
+                IconButton(
+                    onClick = { passwordVisibility = !passwordVisibility }
+                ) {
+                    Icon(
+                        painter = icon,
+                        contentDescription = stringResource(R.string.password_visibility)
+                    )
+                }
+            },
+            visualTransformation = if (passwordVisibility) {
+                VisualTransformation.None
+            } else {
+                PasswordVisualTransformation()
+            },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password,
+                imeAction = imeAction
+            ),
+            keyboardActions = KeyboardActions(onDone = { onDoneClickable() }),
+            modifier = modifier.fillMaxWidth(),
+        )
     }
-    OutlinedTextField(
-        value = value,
-        onValueChange = { onValueChange(it) },
-        label = { Text(stringResource(R.string.password)) },
-        placeholder = { Text(stringResource(R.string.password)) },
-        singleLine = true,
-        leadingIcon = {
-            Icon(
-                imageVector = Icons.Default.Lock,
-                contentDescription = stringResource(R.string.password)
-            )
-        },
-        trailingIcon = {
-            IconButton(
-                onClick = { passwordVisibility = !passwordVisibility }
-            ) {
-                Icon(
-                    painter = icon,
-                    contentDescription = stringResource(R.string.password)
-                )
-            }
-        },
-        visualTransformation = if (passwordVisibility) {
-            VisualTransformation.None
-        } else {
-            PasswordVisualTransformation()
-        },
-        keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Password,
-            imeAction = ImeAction.Done
-        ),
-        keyboardActions = KeyboardActions(onDone = { onDoneClickable() }),
-        modifier = modifier
-            .fillMaxWidth()
-    )
-}
-
-@Composable
-fun NameTextField(
-    value: String,
-    onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = { onValueChange(it) },
-        label = { Text(stringResource(R.string.name)) },
-        placeholder = { Text(stringResource(R.string.name)) },
-        leadingIcon = {
-            Icon(
-                imageVector = Icons.Default.AccountCircle,
-                contentDescription = stringResource(R.string.name)
-            )
-        },
-        keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Text,
-            imeAction = ImeAction.Next
-        ),
-        modifier = modifier
-            .fillMaxWidth()
-    )
 }
 
 @Preview
@@ -200,7 +171,7 @@ fun EmailTextFieldPreview() {
     NutrienceHelperTheme {
         EmailTextField(
             value = "email",
-            onValueChange = { TODO() },
+            onValueChange = { TODO() }
         )
     }
 }
@@ -210,18 +181,6 @@ fun EmailTextFieldPreview() {
 fun PasswordTextFieldPreview() {
     NutrienceHelperTheme {
         PasswordTextField(
-            value = "password",
-            onValueChange = { TODO() },
-            onDoneClickable = { TODO() }
-        )
-    }
-}
-
-@Preview
-@Composable
-fun RepeatPasswordTextFieldPreview() {
-    NutrienceHelperTheme {
-        RepeatPasswordTextField(
             value = "password",
             onValueChange = { TODO() },
             onDoneClickable = { TODO() }

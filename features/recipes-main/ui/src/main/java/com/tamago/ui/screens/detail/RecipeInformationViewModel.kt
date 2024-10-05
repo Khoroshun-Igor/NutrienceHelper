@@ -1,4 +1,4 @@
-package com.tamago.ui.viewmodels
+package com.tamago.ui.screens.detail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -32,9 +32,9 @@ class RecipeInformationViewModel @Inject constructor(
 
 private fun RequestResult<RecipeInfoUI>.toRecipeInfoState(): RecipeInfoState {
     return when (this) {
-        is RequestResult.Error -> com.tamago.ui.viewmodels.RecipeInfoState.Error()
-        is RequestResult.InProgress -> com.tamago.ui.viewmodels.RecipeInfoState.Loading(data)
-        is RequestResult.Success -> com.tamago.ui.viewmodels.RecipeInfoState.Success(data)
+        is RequestResult.Error -> RecipeInfoState.Error()
+        is RequestResult.InProgress -> RecipeInfoState.Loading(data)
+        is RequestResult.Success -> RecipeInfoState.Success(data)
     }
 }
 

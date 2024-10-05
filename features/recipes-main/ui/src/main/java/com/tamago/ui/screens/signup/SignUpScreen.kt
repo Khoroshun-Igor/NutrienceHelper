@@ -8,7 +8,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.tamago.ui.viewmodels.SignUpViewModel
 
 /**
  * Created by Igor Khoroshun on 02.10.2024.

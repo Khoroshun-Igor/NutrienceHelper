@@ -4,6 +4,7 @@ import com.tamago.firebase.domain.repository.AuthRepository
 import com.tamago.firebase.util.Response
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
+import java.io.IOException
 
 /**
  * Created by Igor Khoroshun on 30.09.2024.
@@ -17,7 +18,7 @@ class SignInWithEmailAndPasswordUseCase(
             emit(
                 Response.Success(authRepository.signInWithEmailAndPassword(email, password).await())
             )
-        } catch (e: Exception) {
+        } catch (e: IOException) {
             emit(Response.Error(e))
         }
     }

@@ -1,10 +1,11 @@
-package com.tamago.ui.screens
+package com.tamago.ui.screens.main
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalDrawerSheet
@@ -23,13 +24,13 @@ import com.tamago.ui.components.bars.TopBar
 import com.tamago.ui.components.states.RecipesStateContent
 import com.tamago.ui.navigation.AppNavigation
 import com.tamago.ui.screens.signin.SignInScreen
-import com.tamago.ui.viewmodels.RecipeMainViewModel
 import kotlinx.coroutines.launch
 
 /**
  * Created by Igor Khoroshun on 31.05.2024.
  */
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RecipeMainScreen(
     viewModel: RecipeMainViewModel,
@@ -75,7 +76,7 @@ fun RecipeMainScreen(
             bottomBar = { BottomBar(navigationAction = navigationAction) },
             content = {
                 RecipeStateContent(
-                    viewModel = viewModel,
+                    currentState = currentState,
                     modifier = modifier.padding(it),
                     navigationAction = navigationAction
                 )
@@ -84,17 +85,15 @@ fun RecipeMainScreen(
     }
 }
 
-@Suppress("UnusedParameter")
 @Composable
 internal fun RecipeStateContent(
-    viewModel: RecipeMainViewModel,
+    currentState: State,
     modifier: Modifier = Modifier,
     navigationAction: AppNavigation?
 ) {
-    val state by viewModel.state.collectAsState()
-    val currentState = state
     RecipesStateContent(
         currentState = currentState,
-        navigationAction = navigationAction
+        navigationAction = navigationAction,
+        modifier = modifier
     )
 }

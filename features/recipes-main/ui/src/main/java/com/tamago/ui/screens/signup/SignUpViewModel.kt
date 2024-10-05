@@ -1,4 +1,4 @@
-package com.tamago.ui.viewmodels
+package com.tamago.ui.screens.signup
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -58,7 +58,7 @@ class SignUpViewModel @Inject constructor(
         email: String,
         onError: (String) -> Unit,
         onSuccess: () -> Unit,
-    ){
+    ) {
         profileUseCases.saveUserUseCases.invoke(user = User(name = name, email = email)).onEach { response ->
             when (response) {
                 is Response.Error -> onError(response.e.toString())

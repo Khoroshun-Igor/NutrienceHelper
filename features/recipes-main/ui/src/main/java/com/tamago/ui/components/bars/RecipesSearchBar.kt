@@ -26,7 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.tamago.recipes_uikit.R
 import com.tamago.recipesuikit.NutrienceHelperTheme
-import com.tamago.ui.viewmodels.State
+import com.tamago.ui.screens.main.State
 
 /**
  * Created by Igor Khoroshun on 10.06.2024.
@@ -61,7 +61,7 @@ internal fun RecipesSearchBar(
                         expanded = !expanded
                         onSearch(it)
                     },
-                    expanded = !expanded,
+                    expanded = expanded,
                     onExpandedChange = { expanded = !expanded },
                     enabled = true,
                     placeholder = { Text(text = stringResource(R.string.search_recipe)) },
@@ -89,8 +89,8 @@ internal fun RecipesSearchBar(
                     },
                 )
             },
-            expanded = false,
-            onExpandedChange = { expanded = false },
+            expanded = expanded,
+            onExpandedChange = { expanded = !expanded },
             modifier = Modifier,
             shape = SearchBarDefaults.inputFieldShape,
             tonalElevation = SearchBarDefaults.TonalElevation,

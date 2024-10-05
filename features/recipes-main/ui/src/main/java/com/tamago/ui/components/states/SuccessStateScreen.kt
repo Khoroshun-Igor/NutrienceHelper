@@ -6,8 +6,9 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
 import com.tamago.domain.model.RecipeUI
+import com.tamago.recipes_uikit.R
 import com.tamago.ui.components.RecipeCard
 import com.tamago.ui.navigation.AppNavigation
 
@@ -21,7 +22,7 @@ internal fun RecipesListScreen(
     navigationAction: AppNavigation? = null,
     modifier: Modifier = Modifier,
 ) {
-    LazyVerticalGrid(columns = GridCells.Adaptive(minSize = 180.dp)) {
+    LazyVerticalGrid(columns = GridCells.Adaptive(minSize = dimensionResource(R.dimen.recipe_card_width))) {
         items(currentState) { recipe ->
             key(recipe.id) {
                 RecipeCard(

@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.stringResource
 import com.tamago.recipes_uikit.R
-import com.tamago.ui.viewmodels.State
+import com.tamago.ui.screens.main.State
 
 /**
  * Created by Igor Khoroshun on 30.08.2024.

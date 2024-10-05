@@ -1,10 +1,11 @@
-package com.tamago.ui.screens
+package com.tamago.ui.screens.detail
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -15,13 +16,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tamago.domain.model.RecipeInfoUI
 import com.tamago.recipes_uikit.R
 import com.tamago.ui.components.images.RecipeImageScreen
-import com.tamago.ui.viewmodels.RecipeInfoState
-import com.tamago.ui.viewmodels.RecipeInformationViewModel
 
 /**
  * Created by Igor Khoroshun on 15.08.2024.
@@ -63,8 +63,6 @@ fun RecipeInfoUI(
                     RecipeInfoContent(recipeState.recipe!!)
                 }
             }
-
-            else -> {}
         }
     }
 }
@@ -74,8 +72,13 @@ fun RecipeInfoContent(
     recipeInfoUI: RecipeInfoUI,
     modifier: Modifier = Modifier,
 ) {
-    Column {
-        Box(modifier = modifier) {
+    Column(
+        modifier = modifier.fillMaxSize()
+    ) {
+        Box(
+            modifier = modifier
+                .padding(dimensionResource(R.dimen.min_padding))
+        ) {
             RecipeImageScreen(
                 recipeImage = recipeInfoUI.image,
                 modifier = modifier.fillMaxWidth()

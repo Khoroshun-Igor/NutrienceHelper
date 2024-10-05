@@ -5,7 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import com.tamago.ui.viewmodels.State
+import com.tamago.ui.components.RecipesCarousel
+import com.tamago.ui.screens.main.State
 
 /**
  * Created by Igor Khoroshun on 30.08.2024.
@@ -19,7 +20,10 @@ internal fun ProgressIndicator(state: State.Loading) {
         }
         val recipes = state.recipes
         if (recipes != null) {
-            RecipesListScreen(recipes)
+            RecipesCarousel(
+                recipeState = recipes,
+            )
+//            RecipesListScreen(recipes)
         }
     }
 }

@@ -42,8 +42,11 @@ internal fun RecipeImageScreen(
             contentDescription = stringResource(R.string.recipe_image),
             alignment = Alignment.Center,
             modifier = modifier
-                .size(dimensionResource(R.dimen.recipe_image_size)),
-            contentScale = ContentScale.Crop
+                .size(
+                    width = dimensionResource(R.dimen.carousel_card_width),
+                    height = dimensionResource(R.dimen.carousel_card_height)
+                ),
+            contentScale = ContentScale.FillHeight
         ) {
             val state = painter.state
             when (state) {

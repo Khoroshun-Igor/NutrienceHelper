@@ -1,4 +1,4 @@
-package com.tamago.ui.viewmodels
+package com.tamago.ui.screens.main
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable

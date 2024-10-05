@@ -2,7 +2,6 @@ package com.tamago.ui.components.bars
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -20,7 +19,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.tamago.recipes_uikit.R
 import com.tamago.recipesuikit.NutrienceHelperTheme
-import kotlinx.coroutines.coroutineScope
 
 /**
  * Created by Igor Khoroshun on 10.06.2024.
@@ -43,7 +41,7 @@ internal fun TopBar(
         },
         navigationIcon = navigationIcon,
         actions = {
-            IconButton(onClick = {/*TODO*/ }) {
+            IconButton(onClick = { /*TODO*/ }) {
                 Icon(
                     imageVector = Icons.Default.Refresh,
                     contentDescription = stringResource(R.string.refresh),
@@ -61,18 +59,15 @@ internal fun TopBar(
     )
 }
 
-//@Preview
-//@Composable
-//internal fun TopBarPreview() {
-//    NutrienceHelperTheme {
-//        TopBar(
-//            onClick = { /*TODO*/ },
-//            navigationIcon = {
-//                IconButton(onClick = {
-//                    coroutineScope.launch { drawerState.open() }
-//                }
-//                )
-//            }
-//        )
-//    }
-//}
+@Preview
+@Composable
+internal fun TopBarPreview() {
+    NutrienceHelperTheme {
+        TopBar(
+            navigationIcon = {
+                IconButton(onClick = { /*TODO*/ }) {
+                }
+            }
+        )
+    }
+}
