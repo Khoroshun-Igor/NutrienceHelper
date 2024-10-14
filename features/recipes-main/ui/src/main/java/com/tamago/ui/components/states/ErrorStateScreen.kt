@@ -1,12 +1,14 @@
 package com.tamago.ui.components.states
 
-import androidx.compose.foundation.layout.Box
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.tamago.recipes_uikit.R
+import com.tamago.ui.components.RecipesCarousel
+import com.tamago.ui.navigation.AppNavigation
 import com.tamago.ui.screens.main.State
 
 /**
@@ -14,14 +16,22 @@ import com.tamago.ui.screens.main.State
  */
 
 @Composable
-internal fun ErrorMessage(state: State.Error) {
+internal fun ErrorMessage(
+    state: State.Error,
+    modifier: Modifier = Modifier,
+    navigationAction: AppNavigation? = null,
+) {
+    val context = LocalContext.current
+    val message = stringResource(R.string.error_during_update)
     Column {
-        Box(contentAlignment = Alignment.Center) {
-            Text(text = stringResource(R.string.error_during_update))
-        }
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
         val recipes = state.recipes
         if (recipes != null) {
-            RecipesListScreen(recipes)
+            RecipesCarousel(
+                recipeState = recipes,
+                modifier = modifier,
+                navigationAction = navigationAction,
+            )
         }
     }
 }

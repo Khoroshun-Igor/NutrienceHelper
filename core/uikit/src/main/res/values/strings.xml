@@ -44,4 +44,8 @@
     <string name="login_with_google">LogIn with Google</string>
     <string name="already_registered">Already registered?</string>
     <string name="password_visibility">Password visibility.</string>
+    <string name="connection_error">Connection Error</string>
+    <string name="empty_image_source">Empty image source</string>
+    <string name="create_menu_plan">Empty image source</string>
+    <string name="show_more_items">show more items</string>
 </resources>

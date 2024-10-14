@@ -2,6 +2,7 @@ package com.tamago.ui.components.bars
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
@@ -11,7 +12,9 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.tamago.recipes_uikit.R
 import com.tamago.recipesuikit.NutrienceHelperTheme
 import com.tamago.ui.navigation.AppNavigation
 
@@ -29,14 +32,20 @@ internal fun BottomBar(
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
                     imageVector = Icons.Default.Home,
-                    contentDescription = "home",
+                    contentDescription = stringResource(R.string.home),
                     modifier = modifier
                 )
             }
             IconButton(onClick = { navigationAction?.navigateToSearch() }) {
                 Icon(
                     imageVector = Icons.Default.Search,
-                    contentDescription = "search"
+                    contentDescription = stringResource(R.string.search)
+                )
+            }
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    imageVector = Icons.Default.Favorite,
+                    contentDescription = stringResource(R.string.favorite)
                 )
             }
         },
@@ -45,7 +54,10 @@ internal fun BottomBar(
                 onClick = { /*TODO*/ },
                 modifier = modifier
             ) {
-                Icon(Icons.Filled.Add, "Add Menu")
+                Icon(
+                    imageVector = Icons.Filled.Add,
+                    contentDescription = stringResource(R.string.create_menu_plan)
+                )
             }
         },
         containerColor = MaterialTheme.colorScheme.surfaceContainer

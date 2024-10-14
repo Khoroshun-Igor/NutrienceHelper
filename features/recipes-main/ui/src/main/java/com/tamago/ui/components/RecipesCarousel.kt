@@ -23,7 +23,7 @@ fun RecipesCarousel(
 ) {
     HorizontalMultiBrowseCarousel(
         state = rememberCarouselState { recipeState.size },
-        preferredItemWidth = dimensionResource(R.dimen.recipe_card_width),
+        preferredItemWidth = dimensionResource(R.dimen.carousel_card_width),
         itemSpacing = dimensionResource(R.dimen.min_padding),
     ) { i ->
         val recipe = recipeState[i]

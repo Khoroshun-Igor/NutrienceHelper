@@ -9,6 +9,7 @@ import com.tamago.ui.screens.main.State
 import com.tamago.ui.screens.main.toState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,13 +21,16 @@ import javax.inject.Inject
 class RecipeSearchViewModel @Inject constructor(
     private val getAllRecipesUseCase: GetAllRecipesUseCase,
 ) : ViewModel() {
-    var recipeList: MutableStateFlow<State> =
+
+    private val _recipeList: MutableStateFlow<State> =
         MutableStateFlow(value = RequestResult.Success<List<RecipeUI>>(emptyList()).toState())
+
+    var recipeList = _recipeList.asStateFlow()
 
     private fun getRecipes(query: String) {
         viewModelScope.launch {
-            getAllRecipesUseCase.invoke(query).collect { result ->
-                recipeList.value = result.toState()
+            getAllRecipesUseCase.findRecipesByQuery(query).collect { result ->
+                _recipeList.value = result.toState()
             }
         }
     }

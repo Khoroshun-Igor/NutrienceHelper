@@ -11,25 +11,27 @@ import com.tamago.ui.screens.main.State
  */
 
 @Composable
-internal fun RecipesStateContent(
+internal fun RecipesMainContent(
     currentState: State,
+    modifier: Modifier = Modifier,
     navigationAction: AppNavigation? = null,
-    modifier: Modifier = Modifier
 ) {
     when (currentState) {
         is State.None -> Unit
-        is State.Error -> ErrorMessage(state = currentState)
-        is State.Loading -> ProgressIndicator(state = currentState)
+        is State.Error -> ErrorMessage(
+            state = currentState,
+            modifier = modifier,
+            navigationAction = navigationAction,
+        )
+        is State.Loading -> ProgressIndicator(
+            state = currentState,
+            modifier = modifier,
+            navigationAction = navigationAction,
+        )
         is State.Success -> RecipesCarousel(
             recipeState = currentState.recipes,
             modifier = modifier,
             navigationAction = navigationAction,
         )
-
-//            RecipesListScreen(
-//            currentState = currentState.recipes,
-//            navigationAction = navigationAction,
-//            modifier = modifier
-//        )
     }
 }

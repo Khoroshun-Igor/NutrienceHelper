@@ -38,6 +38,7 @@ fun SignInScreen(
             )
         },
         closeDrawer = closeDrawer,
-        modifier = modifier
+        modifier = modifier,
+        navigationAction = navigationAction
     )
 }

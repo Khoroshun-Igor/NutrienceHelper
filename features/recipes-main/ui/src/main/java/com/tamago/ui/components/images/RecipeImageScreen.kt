@@ -44,21 +44,21 @@ internal fun RecipeImageScreen(
             modifier = modifier
                 .size(
                     width = dimensionResource(R.dimen.carousel_card_width),
-                    height = dimensionResource(R.dimen.carousel_card_height)
+                    height = dimensionResource(R.dimen.carousel_card_height_image)
                 ),
-            contentScale = ContentScale.FillHeight
+            contentScale = ContentScale.Crop
         ) {
             val state = painter.state
             when (state) {
                 AsyncImagePainter.State.Empty -> Toast.makeText(
                     LocalContext.current,
-                    "Empty",
+                    stringResource(R.string.empty_image_source),
                     Toast.LENGTH_LONG
                 ).show()
 
                 is AsyncImagePainter.State.Error -> Toast.makeText(
                     LocalContext.current,
-                    "Connection Error",
+                    stringResource(R.string.connection_error),
                     Toast.LENGTH_LONG
                 ).show()
 

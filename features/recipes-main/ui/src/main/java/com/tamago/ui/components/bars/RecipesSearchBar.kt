@@ -2,10 +2,7 @@ package com.tamago.ui.components.bars
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
@@ -21,7 +18,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.tamago.recipes_uikit.R
@@ -45,58 +41,51 @@ internal fun RecipesSearchBar(
     var expanded by remember {
         mutableStateOf(false)
     }
-
-    Row(
-        horizontalArrangement = Arrangement.Center,
-        modifier = modifier
-            .padding(horizontal = dimensionResource(R.dimen.min_padding))
-            .fillMaxWidth()
-    ) {
-        SearchBar(
-            inputField = {
-                SearchBarDefaults.InputField(
-                    query = query,
-                    onQueryChange = onQueryChange,
-                    onSearch = {
-                        expanded = !expanded
-                        onSearch(it)
-                    },
-                    expanded = expanded,
-                    onExpandedChange = { expanded = !expanded },
-                    enabled = true,
-                    placeholder = { Text(text = stringResource(R.string.search_recipe)) },
-                    leadingIcon = null,
-                    trailingIcon = {
-                        if (currentState is State.Loading) {
-                            CircularProgressIndicator()
-                        } else {
-                            Icon(
-                                Icons.Default.Search,
-                                contentDescription = stringResource(R.string.search)
-                            )
-                        }
-                    },
-                    interactionSource = remember {
-                        MutableInteractionSource()
-                    }.also { interactionSource ->
-                        LaunchedEffect(key1 = interactionSource) {
-                            interactionSource.interactions.collect { interaction ->
-                                if (interaction is PressInteraction.Release) {
-                                    onClicked.invoke()
-                                }
+    SearchBar(
+        inputField = {
+            SearchBarDefaults.InputField(
+                query = query,
+                onQueryChange = onQueryChange,
+                onSearch = {
+                    expanded = !expanded
+                    onSearch(it)
+                },
+                expanded = expanded,
+                onExpandedChange = { expanded = !expanded },
+                enabled = true,
+                placeholder = { Text(text = stringResource(R.string.search_recipe)) },
+                leadingIcon = null,
+                trailingIcon = {
+                    if (currentState is State.Loading) {
+                        CircularProgressIndicator()
+                    } else {
+                        Icon(
+                            Icons.Default.Search,
+                            contentDescription = stringResource(R.string.search)
+                        )
+                    }
+                },
+                interactionSource = remember {
+                    MutableInteractionSource()
+                }.also { interactionSource ->
+                    LaunchedEffect(key1 = interactionSource) {
+                        interactionSource.interactions.collect { interaction ->
+                            if (interaction is PressInteraction.Release) {
+                                onClicked.invoke()
                             }
                         }
-                    },
-                )
-            },
-            expanded = expanded,
-            onExpandedChange = { expanded = !expanded },
-            modifier = Modifier,
-            shape = SearchBarDefaults.inputFieldShape,
-            tonalElevation = SearchBarDefaults.TonalElevation,
-            shadowElevation = SearchBarDefaults.ShadowElevation,
-            windowInsets = SearchBarDefaults.windowInsets,
-        ) {}
+                    }
+                },
+            )
+        },
+        expanded = expanded,
+        onExpandedChange = { expanded = !expanded },
+        modifier = modifier.fillMaxWidth(),
+        shape = SearchBarDefaults.inputFieldShape,
+        tonalElevation = SearchBarDefaults.TonalElevation,
+        shadowElevation = SearchBarDefaults.ShadowElevation,
+        windowInsets = SearchBarDefaults.windowInsets,
+    ) {
     }
 }
 

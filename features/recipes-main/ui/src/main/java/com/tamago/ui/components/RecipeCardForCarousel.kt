@@ -1,18 +1,18 @@
 package com.tamago.ui.components
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.tamago.domain.model.RecipeUI
 import com.tamago.recipes_uikit.R
+import com.tamago.recipesuikit.NutrienceHelperTheme
 import com.tamago.ui.components.images.RecipeImageScreen
 import com.tamago.ui.navigation.AppNavigation
 
@@ -29,23 +29,34 @@ fun RecipeCardForCarousel(
     ElevatedCard(
         onClick = { navigationAction?.navigateToDetails(recipe.id) },
         modifier = modifier
+            .padding(dimensionResource(R.dimen.min_padding))
             .size(
-                width = dimensionResource(R.dimen.recipe_card_width),
+                width = dimensionResource(R.dimen.carousel_card_width),
                 height = dimensionResource(R.dimen.carousel_card_height)
             )
     ) {
-        Row(modifier = modifier) {
-            Box(
-                contentAlignment = Alignment.TopCenter
-            ) {
-                Text(
-                    text = recipe.title,
-                    modifier = modifier.width(dimensionResource(R.dimen.recipe_card_width)),
-                    maxLines = 2,
-                    style = MaterialTheme.typography.labelLarge
-                )
-                RecipeImageScreen(recipeImage = recipe.image)
-            }
+        Column {
+            RecipeImageScreen(recipeImage = recipe.image)
+            Text(
+                text = recipe.title,
+                maxLines = 2,
+                style = MaterialTheme.typography.labelMedium
+            )
         }
+    }
+}
+
+@Preview
+@Composable
+fun RecipeCardForCarouselPreview() {
+    NutrienceHelperTheme {
+        RecipeCardForCarousel(
+            recipe = RecipeUI(
+                1,
+                "pizzapizzapizzapizzapizzapizza pizza pizza pizza pizza pizza pizza pizza ",
+                "",
+                ".jpg"
+            )
+        )
     }
 }

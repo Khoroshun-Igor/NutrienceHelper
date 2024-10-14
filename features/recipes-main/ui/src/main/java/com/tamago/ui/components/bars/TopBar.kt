@@ -1,24 +1,15 @@
 package com.tamago.ui.components.bars
 
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import com.tamago.recipes_uikit.R
-import com.tamago.recipesuikit.NutrienceHelperTheme
 
 /**
  * Created by Igor Khoroshun on 10.06.2024.
@@ -28,26 +19,15 @@ import com.tamago.recipesuikit.NutrienceHelperTheme
 @Composable
 internal fun TopBar(
     navigationIcon: @Composable () -> Unit,
+    actions: @Composable RowScope.() -> Unit,
+    title: @Composable () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     TopAppBar(
-        title = {
-            Text(
-                text = stringResource(R.string.app_name),
-                modifier = modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center
-            )
-        },
+        title = title,
         navigationIcon = navigationIcon,
-        actions = {
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    imageVector = Icons.Default.Refresh,
-                    contentDescription = stringResource(R.string.refresh),
-                )
-            }
-        },
+        actions = actions,
         colors = TopAppBarColors(
             containerColor = MaterialTheme.colorScheme.surface,
             scrolledContainerColor = MaterialTheme.colorScheme.surface,
@@ -56,18 +36,7 @@ internal fun TopBar(
             actionIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant
         ),
         scrollBehavior = scrollBehavior,
+        modifier = modifier
+            .fillMaxWidth(),
     )
-}
-
-@Preview
-@Composable
-internal fun TopBarPreview() {
-    NutrienceHelperTheme {
-        TopBar(
-            navigationIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
-                }
-            }
-        )
-    }
 }

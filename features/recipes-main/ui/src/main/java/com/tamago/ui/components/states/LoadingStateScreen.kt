@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import com.tamago.ui.components.RecipesCarousel
+import com.tamago.ui.navigation.AppNavigation
 import com.tamago.ui.screens.main.State
 
 /**
@@ -13,7 +15,11 @@ import com.tamago.ui.screens.main.State
  */
 
 @Composable
-internal fun ProgressIndicator(state: State.Loading) {
+internal fun ProgressIndicator(
+    state: State.Loading,
+    modifier: Modifier = Modifier,
+    navigationAction: AppNavigation? = null,
+) {
     Column {
         Box(contentAlignment = Alignment.Center) {
             CircularProgressIndicator()
@@ -22,6 +28,8 @@ internal fun ProgressIndicator(state: State.Loading) {
         if (recipes != null) {
             RecipesCarousel(
                 recipeState = recipes,
+                modifier = modifier,
+                navigationAction = navigationAction
             )
 //            RecipesListScreen(recipes)
         }

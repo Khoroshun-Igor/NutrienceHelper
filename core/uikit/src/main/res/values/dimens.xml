@@ -9,8 +9,9 @@
     <dimen name="recipe_image_size">200dp</dimen>
     <dimen name="text_width">128dp</dimen>
     <dimen name="recipe_card_width">208dp</dimen>
-    <dimen name="carousel_card_width">128dp</dimen>
+    <dimen name="carousel_card_width">172dp</dimen>
     <dimen name="carousel_card_height">256dp</dimen>
+    <dimen name="carousel_card_height_image">208dp</dimen>
     <dimen name="avatar_size">60dp</dimen>
     <dimen name="drawer_size">320dp</dimen>
 </resources>
