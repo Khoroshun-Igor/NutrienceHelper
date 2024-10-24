@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.firebase.ui.storage)
     implementation(libs.gms.play.services.auth)
     implementation(libs.androidx.paging.common.android)
+    implementation(libs.androidx.activity.ktx)
     debugImplementation(libs.androidx.ui.tooling)
     ksp(libs.dagger.hilt.compiler)
     ksp(libs.androidx.hilt.compiler)

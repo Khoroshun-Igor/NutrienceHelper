@@ -1,8 +1,9 @@
-package com.tamago.recipedata
+package com.tamago.recipedata.util
 
 /**
  * Created by Igor Khoroshun on 02.06.2024.
  */
+
 public sealed class RequestResult<out E : Any>(public open val data: E? = null) {
     public class InProgress<E : Any>(data: E? = null) : RequestResult<E>(data)
     public class Success<E : Any>(override val data: E) : RequestResult<E>(data)

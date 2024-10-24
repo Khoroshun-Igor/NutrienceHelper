@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tamago.domain.model.RecipeUI
 import com.tamago.domain.usecases.GetAllRecipesUseCase
-import com.tamago.recipedata.RequestResult
+import com.tamago.recipedata.util.RequestResult
 import com.tamago.ui.screens.main.State
 import com.tamago.ui.screens.main.toState
 import dagger.hilt.android.lifecycle.HiltViewModel

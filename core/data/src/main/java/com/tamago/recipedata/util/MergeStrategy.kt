@@ -1,6 +1,6 @@
 @file:Suppress("UnusedParameter")
 
-package com.tamago.recipedata
+package com.tamago.recipedata.util
 
 /**
  * Created by Igor Khoroshun on 02.06.2024.

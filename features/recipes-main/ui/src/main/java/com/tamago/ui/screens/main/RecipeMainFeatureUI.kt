@@ -24,7 +24,7 @@ import com.tamago.recipes_uikit.R
 import com.tamago.ui.components.bars.BottomBar
 import com.tamago.ui.components.bars.TopBar
 import com.tamago.ui.components.buttons.RefreshIconButton
-import com.tamago.ui.components.states.RecipesMainContent
+import com.tamago.ui.components.states.RecipesStateContent
 import com.tamago.ui.navigation.AppNavigation
 import com.tamago.ui.screens.signin.SignInScreen
 import kotlinx.coroutines.launch
@@ -87,7 +87,7 @@ fun RecipeMainScreen(
             },
             bottomBar = { BottomBar(navigationAction = navigationAction) },
             content = {
-                RecipesMainContent(
+                RecipesStateContent(
                     currentState = currentState,
                     modifier = modifier.padding(it),
                     navigationAction = navigationAction

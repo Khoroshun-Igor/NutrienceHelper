@@ -1,15 +1,20 @@
 @file:Suppress("UnusedParameter")
 
-package com.tamago.recipedata
+package com.tamago.recipedata.repositories
 
 import com.tamago.common.Logger
-import com.tamago.recipe.database.RecipesDataBase
+import com.tamago.recipe.database.database.RecipesDataBase
 import com.tamago.recipe.database.models.RecipeDbo
 import com.tamago.recipedata.mappers.toRecipe
 import com.tamago.recipedata.mappers.toRecipeDBO
 import com.tamago.recipedata.mappers.toRecipeInfo
 import com.tamago.recipedata.model.Recipe
 import com.tamago.recipedata.model.RecipeInfo
+import com.tamago.recipedata.util.DefaultRequestResponseMergeStrategy
+import com.tamago.recipedata.util.MergeStrategy
+import com.tamago.recipedata.util.RequestResult
+import com.tamago.recipedata.util.map
+import com.tamago.recipedata.util.toRequestResult
 import com.tamago.spoonacularapi.SpoonacularApi
 import com.tamago.spoonacularapi.models.RecipeDto
 import com.tamago.spoonacularapi.models.RecipeInfoDto

@@ -28,7 +28,7 @@ fun AuthButton(
     onClick: () -> Unit,
     loading: Boolean,
     success: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         horizontalArrangement = Arrangement.Center,

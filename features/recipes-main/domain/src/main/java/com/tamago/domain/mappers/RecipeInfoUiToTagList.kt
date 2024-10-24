@@ -1,7 +1,7 @@
 package com.tamago.domain.mappers
 
 import com.tamago.domain.model.RecipeInfoUI
-import com.tamago.domain.utils.Constants
+import com.tamago.recipesuikit.util.Constants
 
 /**
  * Created by Igor Khoroshun on 08.10.2024.

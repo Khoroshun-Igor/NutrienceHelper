@@ -35,3 +35,7 @@
 
 -keep public class com.tamago.spoonacularapi.models.*
 -keep public class kotlin.Result { *; }
+-if class androidx.credentials.CredentialManager
+-keep class androidx.credentials.playservices.** {
+  *;
+}

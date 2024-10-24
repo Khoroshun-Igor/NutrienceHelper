@@ -2,6 +2,7 @@ package com.tamago.nutriencehelper.di
 
 import com.tamago.domain.usecases.auth.AuthUseCases
 import com.tamago.domain.usecases.auth.SignInWithEmailAndPasswordUseCase
+import com.tamago.domain.usecases.auth.SignInWithGoogleUseCase
 import com.tamago.domain.usecases.auth.SignOutUseCase
 import com.tamago.domain.usecases.auth.SignUpWithEmailAndPasswordUseCase
 import com.tamago.domain.usecases.profile.ProfileUseCases
@@ -30,6 +31,7 @@ object UseCaseModule {
     ): AuthUseCases {
         return AuthUseCases(
             signInWithEmailAndPasswordUseCase = SignInWithEmailAndPasswordUseCase(authRepository),
+            signInWithGoogleUseCase = SignInWithGoogleUseCase(authRepository),
             signUpWithEmailAndPasswordUseCase = SignUpWithEmailAndPasswordUseCase(authRepository),
             signOutUseCase = SignOutUseCase(authRepository)
         )

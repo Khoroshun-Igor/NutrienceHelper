@@ -6,6 +6,7 @@ package com.tamago.domain.usecases.auth
 
 data class AuthUseCases(
     val signInWithEmailAndPasswordUseCase: SignInWithEmailAndPasswordUseCase,
+    val signInWithGoogleUseCase: SignInWithGoogleUseCase,
     val signUpWithEmailAndPasswordUseCase: SignUpWithEmailAndPasswordUseCase,
     val signOutUseCase: SignOutUseCase,
 )

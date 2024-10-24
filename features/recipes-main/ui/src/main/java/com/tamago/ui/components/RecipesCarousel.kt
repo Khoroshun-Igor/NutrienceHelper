@@ -28,7 +28,7 @@ fun RecipesCarousel(
     ) { i ->
         val recipe = recipeState[i]
         RecipeCardForCarousel(
-            recipe,
+            recipe = recipe,
             modifier = modifier,
             navigationAction = navigationAction
         )

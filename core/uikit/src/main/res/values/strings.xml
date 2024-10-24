@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Piece Of Cake. Nutrience</string>
-    <string name="client_id">1072617360888-2q3c8uckuq857kn6l54l7vetkn49pi9v.apps.googleusercontent.com</string>
     <string name="home">Home</string>
     <string name="favorite">Favorite</string>
     <string name="sign_out">Sign out</string>

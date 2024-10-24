@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.firebase.storage.ktx)
     implementation(projects.core.data)
     implementation(projects.core.firebase)
+    implementation(projects.core.uikit)
     implementation(libs.google.services)
     implementation(libs.kotlinx.coroutines.play.services)
 

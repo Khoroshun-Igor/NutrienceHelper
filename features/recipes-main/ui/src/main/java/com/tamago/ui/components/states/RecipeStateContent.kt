@@ -11,7 +11,7 @@ import com.tamago.ui.screens.main.State
  */
 
 @Composable
-internal fun RecipesMainContent(
+internal fun RecipesStateContent(
     currentState: State,
     modifier: Modifier = Modifier,
     navigationAction: AppNavigation? = null,

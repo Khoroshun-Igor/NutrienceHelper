@@ -8,13 +8,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.tamago.ui.navigation.AppNavigation
 
 /**
  * Created by Igor Khoroshun on 02.10.2024.
  */
 
 @Composable
-fun SignUpScreen() {
+fun SignUpScreen(
+    navigationAction: AppNavigation? = null
+) {
     val context = LocalContext.current
     val signUpViewModel: SignUpViewModel = hiltViewModel()
     var isSignUp by remember { mutableStateOf(false) }
@@ -26,7 +29,6 @@ fun SignUpScreen() {
         isAuthenticated = false,
         onSignUpClick = { name, email, password ->
             signUpViewModel.signUpWithEmailAndPassword(
-                name = name,
                 email = email,
                 password = password,
                 onSuccess = { isSignUp = true },
@@ -43,5 +45,6 @@ fun SignUpScreen() {
                 }
             )
         },
+        navigationAction = navigationAction
     )
 }

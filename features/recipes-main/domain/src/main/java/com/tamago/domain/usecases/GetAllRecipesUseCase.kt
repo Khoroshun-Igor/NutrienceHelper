@@ -1,9 +1,9 @@
 package com.tamago.domain.usecases
 
 import com.tamago.domain.model.RecipeUI
-import com.tamago.recipedata.RecipesRepositoryImpl
-import com.tamago.recipedata.RequestResult
-import com.tamago.recipedata.map
+import com.tamago.recipedata.repositories.RecipesRepositoryImpl
+import com.tamago.recipedata.util.RequestResult
+import com.tamago.recipedata.util.map
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

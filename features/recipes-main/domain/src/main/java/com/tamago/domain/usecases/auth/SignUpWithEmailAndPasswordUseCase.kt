@@ -12,10 +12,11 @@ import java.io.IOException
 class SignUpWithEmailAndPasswordUseCase(
     private val authRepository: AuthRepository
 ) {
-    operator fun invoke(name: String, email: String, password: String) = flow {
+    operator fun invoke(email: String, password: String) = flow {
         try {
             emit(Response.Loading)
-            emit(Response.Success(authRepository.signUpWithEmailAndPassword(name, email, password).await()))
+            val result = authRepository.signUpWithEmailAndPassword(email, password).await()
+            emit(Response.Success(result))
         } catch (e: IOException) {
             emit(Response.Error(e))
         }

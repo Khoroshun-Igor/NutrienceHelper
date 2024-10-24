@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tamago.domain.model.RecipeInfoUI
 import com.tamago.domain.usecases.GetRecipeByIdUseCase
-import com.tamago.recipedata.RequestResult
+import com.tamago.recipedata.util.RequestResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

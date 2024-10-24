@@ -23,7 +23,7 @@ import androidx.compose.ui.res.stringResource
 import com.tamago.recipes_uikit.R
 import com.tamago.ui.components.bars.RecipesSearchBar
 import com.tamago.ui.components.bars.TopBar
-import com.tamago.ui.components.states.RecipesMainContent
+import com.tamago.ui.components.states.RecipesStateContent
 import com.tamago.ui.navigation.AppNavigation
 import com.tamago.ui.screens.signin.SignInScreen
 import kotlinx.coroutines.launch
@@ -40,7 +40,7 @@ internal fun RecipeSearchScreen(
 ) {
     val state by viewModel.recipeList.collectAsState()
     val currentState = state
-    var query by remember { mutableStateOf("wine") }
+    var query by remember { mutableStateOf("") }
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
@@ -79,7 +79,6 @@ internal fun RecipeSearchScreen(
                         RecipesSearchBar(
                             query = query,
                             onQueryChange = { query = it },
-                            onClicked = { viewModel.onSearchEvent(query) },
                             onSearch = { viewModel.onSearchEvent(query) },
                             currentState = currentState
                         )
@@ -87,10 +86,10 @@ internal fun RecipeSearchScreen(
                 )
             },
             content = {
-                RecipesMainContent(
+                RecipesStateContent(
                     currentState = currentState,
+                    modifier = modifier.padding(it),
                     navigationAction = navigationAction,
-                    modifier = modifier.padding(it)
                 )
             }
         )

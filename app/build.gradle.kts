@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -24,8 +26,9 @@ android {
             useSupportLibrary = true
         }
 
-        buildConfigField("String", "RECIPE_API_KEY", "\"c189afc125b846a7922c67b3fbcf0a55\"")
-        buildConfigField("String", "RECIPE_API_BASE_URL", "\"https://api.spoonacular.com\"")
+        val localProperties = gradleLocalProperties(rootDir, providers)
+        buildConfigField("String", "RECIPE_API_KEY", "\"${localProperties.getProperty("RECIPE_API_KEY")}\"")
+        buildConfigField("String", "RECIPE_API_BASE_URL", "\"${localProperties.getProperty("RECIPE_API_BASE_URL")}\"")
 
         resourceConfigurations += setOf("ru", "en")
         ndk {
@@ -99,6 +102,9 @@ dependencies {
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.storage.ktx)
     implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
     ksp(libs.dagger.hilt.compiler)
 
     implementation(projects.core.data)

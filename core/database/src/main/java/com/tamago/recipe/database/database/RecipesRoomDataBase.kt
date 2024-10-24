@@ -1,4 +1,4 @@
-package com.tamago.recipe.database
+package com.tamago.recipe.database.database
 
 import android.content.Context
 import androidx.room.Database

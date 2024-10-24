@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -14,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tamago.domain.mappers.toTagList
@@ -30,6 +32,42 @@ import com.tamago.ui.components.tags.RoundedTag
 
 @Composable
 fun RecipeInfoContent(
+    recipeState: RecipeInfoState,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier.fillMaxSize()
+    ) {
+        when (recipeState) {
+            is RecipeInfoState.Error -> {
+                Box(contentAlignment = Alignment.Center) {
+                    Text(text = stringResource(R.string.error_during_update))
+                }
+            }
+
+            is RecipeInfoState.Loading -> {
+                Box(contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
+                }
+            }
+
+            RecipeInfoState.None -> {
+                Box(contentAlignment = Alignment.Center) {
+                    Text(text = stringResource(R.string.no_recipes))
+                }
+            }
+
+            is RecipeInfoState.Success -> {
+                if (recipeState.recipe != null) {
+                    RecipeDetailsContent(recipeState.recipe)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun RecipeDetailsContent(
     recipeInfoUI: RecipeInfoUI,
     modifier: Modifier = Modifier,
 ) {
@@ -86,7 +124,7 @@ fun RecipeInfoContent(
 @Composable
 fun RecipeInfoContentPreview() {
     NutrienceHelperTheme {
-        RecipeInfoContent(
+        RecipeDetailsContent(
             recipeInfoUI = RecipeInfoUI(
                 id = 0,
                 title = "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",

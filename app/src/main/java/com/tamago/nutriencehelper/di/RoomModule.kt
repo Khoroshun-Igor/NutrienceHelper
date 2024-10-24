@@ -1,7 +1,7 @@
 package com.tamago.nutriencehelper.di
 
 import android.content.Context
-import com.tamago.recipe.database.RecipesDataBase
+import com.tamago.recipe.database.database.RecipesDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

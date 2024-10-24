@@ -5,6 +5,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.tamago.recipe.database.dao.RecipeDao
+import com.tamago.recipe.database.database.RecipesRoomDataBase
 import com.tamago.recipe.database.models.RecipeDbo
 import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking

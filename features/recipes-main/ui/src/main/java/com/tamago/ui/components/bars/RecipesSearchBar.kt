@@ -1,7 +1,5 @@
 package com.tamago.ui.components.bars
 
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -12,7 +10,6 @@ import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,7 +30,6 @@ import com.tamago.ui.screens.main.State
 internal fun RecipesSearchBar(
     query: String,
     onQueryChange: (String) -> Unit,
-    onClicked: () -> Unit,
     onSearch: (String) -> Unit,
     modifier: Modifier = Modifier,
     currentState: State? = null,
@@ -65,17 +61,6 @@ internal fun RecipesSearchBar(
                         )
                     }
                 },
-                interactionSource = remember {
-                    MutableInteractionSource()
-                }.also { interactionSource ->
-                    LaunchedEffect(key1 = interactionSource) {
-                        interactionSource.interactions.collect { interaction ->
-                            if (interaction is PressInteraction.Release) {
-                                onClicked.invoke()
-                            }
-                        }
-                    }
-                },
             )
         },
         expanded = expanded,
@@ -96,7 +81,6 @@ fun RecipeSearchBarPreview() {
         RecipesSearchBar(
             query = "pizza",
             onQueryChange = { TODO() },
-            onClicked = {},
             onSearch = { TODO() },
             currentState = null
         )

@@ -1,9 +1,14 @@
-package com.tamago.domain.utils
+package com.tamago.recipesuikit.util
 
 /**
- * Created by Igor Khoroshun on 07.10.2024.
+ * Created by Igor Khoroshun on 24.10.2024.
  */
 object Constants {
+    // diNamed
+    const val SIGN_IN_REQUEST = "signInRequest"
+    const val SIGN_UP_REQUEST = "signUpRequest"
+
+    // RecipeData
     const val CHEAP = "cheap"
     const val DAIRY_FREE = "dairy free"
     const val GLUTEN_FREE = "gluten free"

@@ -23,7 +23,6 @@ class SignUpViewModel @Inject constructor(
     private val authUseCases: AuthUseCases,
     private val profileUseCases: ProfileUseCases,
 ) : ViewModel() {
-
     var loadingState by mutableStateOf(false)
         private set
 
@@ -32,13 +31,12 @@ class SignUpViewModel @Inject constructor(
     }
 
     fun signUpWithEmailAndPassword(
-        name: String,
         email: String,
         password: String,
         onSuccess: () -> Unit,
         onError: (String) -> Unit,
     ) {
-        authUseCases.signUpWithEmailAndPasswordUseCase.invoke(name, email, password).onEach { result ->
+        authUseCases.signUpWithEmailAndPasswordUseCase.invoke(email, password).onEach { result ->
             when (result) {
                 is Response.Error -> {
                     onError(result.e.toString())

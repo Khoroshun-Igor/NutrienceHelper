@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tamago.domain.model.RecipeUI
 import com.tamago.domain.usecases.GetAllRecipesUseCase
-import com.tamago.recipedata.RequestResult
+import com.tamago.recipedata.util.RequestResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -26,7 +26,7 @@ class RecipeMainViewModel @Inject constructor(
     private val getAllRecipesUseCase: GetAllRecipesUseCase,
 ) : ViewModel() {
 
-    var query: String by mutableStateOf("")
+    private var query: String by mutableStateOf("")
     var state: StateFlow<State> = getAllRecipesUseCase.invoke(query)
         .map { it.toState() }
         .stateIn(viewModelScope, SharingStarted.Lazily, State.None)
@@ -36,10 +36,6 @@ class RecipeMainViewModel @Inject constructor(
             .map { it.toState() }
             .stateIn(viewModelScope, SharingStarted.Lazily, State.None)
     }
-
-//    fun onSearchUpdate(query: String?) {
-//        findRecipes(query = query ?: "")
-//    }
 }
 
 fun RequestResult<List<RecipeUI>>.toState(): State {

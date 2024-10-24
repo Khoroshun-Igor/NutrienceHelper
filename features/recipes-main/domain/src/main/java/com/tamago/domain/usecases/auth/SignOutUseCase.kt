@@ -12,16 +12,13 @@ import java.io.IOException
 class SignOutUseCase(
     private val authRepository: AuthRepository
 ) {
-    suspend operator fun invoke(): Flow<Response<Unit>> {
-        val flow = flow {
-            try {
-                emit(Response.Loading)
-                val result = authRepository.signOut()
-                emit(Response.Success(result))
-            } catch (e: IOException) {
-                emit(Response.Error(e))
-            }
+    operator fun invoke(): Flow<Response<Unit>> = flow {
+        try {
+            emit(Response.Loading)
+            val result = authRepository.signOut()
+            emit(Response.Success(result))
+        } catch (e: IOException) {
+            emit(Response.Error(e))
         }
-        return flow
     }
 }
